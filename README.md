@@ -1,6 +1,6 @@
 # Payer Php SDK
 
-This composer package includes everything you need to get started with the integration to Payers secure payment services. Payer is supporting all popular payment methods such as card and mobile payment, invoice, installment, banking and much more.
+This composer package includes everything you need to get started with the integration to Payers secure payment services. Payer is supporting all popular payment methods such as card and mobile payments, invoice, installment, banking and much more.
 
 For more information about our payment services, please visit [www.payer.se](https://www.payer.se).
 
@@ -10,7 +10,7 @@ For more information about our payment services, please visit [www.payer.se](htt
   * [PHP](http://php.org): Version 5.X.
   * [Curl](https://curl.haxx.se/): Version 7.10.X
   * [Composer](https://getcomposer.org)
-  * [Payer Credentials](https://payer.se): Missing credentials? Please contact the customer service at [teknik@payer.se](mailto:teknik@payer.se)
+  * [Payer Credentials](https://payer.se): Missing credentials? [Contact us](mailto:teknik@payer.se)
 
 ## Quickstart
 
