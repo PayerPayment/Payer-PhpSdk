@@ -39,11 +39,11 @@ try {
     $gateway = Client::create($credentials);
 
     $challange = new Challange($gateway);
-    $challangeResponse = $challange->create();
-    $challangeObject = json_decode($challangeResponse);
-    $challangeHash = $challangeObject->hash;
+    $challangeResponse = Response::fromJson(
+        $challange->create()
+    );
 
-    $data['hash'] = $challangeHash;
+    $data['hash'] = $challangeResponse['hash'];
 
     $getAddress = new GetAddress($gateway);
     $getAddressResponse = Response::fromJson(

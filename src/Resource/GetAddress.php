@@ -78,7 +78,7 @@ class GetAddress extends PayerResource
             throw new InvalidRequestException("Missing argument: 'hash'");
         }
 
-        $post = $this->gateway->getRestService();
+        $post = $this->gateway->getPostService();
         $credentials = $post->getCredentials();
 
         $http = new Http;
