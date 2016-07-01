@@ -1,5 +1,4 @@
 {
-    "version": "1.0.1",
     "name": "payer/sdk",
     "type": "library",
     "description": "The All-in-one Payer API for PHP Developers. This is the only package you need to get started with Payers payment solution.",
