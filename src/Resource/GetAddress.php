@@ -88,7 +88,14 @@ class GetAddress extends PayerResource
         );
 
         $response = $http->request($request);
-        $obj = Response::fromJson($response->getData());
+
+        $obj = Response::fromJson(
+            iconv(
+                'ISO-8859-1',
+                'UTF-8',
+                $response->getData()
+            )
+        );
 
         $customer = $obj['consumer'];
 
