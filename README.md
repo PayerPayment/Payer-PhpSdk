@@ -7,7 +7,7 @@ For more information about our payment services, please visit [www.payer.se](htt
 ## Requirements
 
   * [Apache](http://apache.org)
-  * [PHP](http://php.org): Version 5.X.
+  * [PHP](http://php.org): Version 5.X
   * [Curl](https://curl.haxx.se/): Version 7.10.X
   * [Composer](https://getcomposer.org)
   * [Payer Credentials](https://payer.se): Missing credentials? [Contact us](mailto:teknik@payer.se)
