@@ -2,7 +2,7 @@
 
 This composer package includes everything you need to get started with the integration to Payers secure payment services. Payer is supporting all popular payment methods such as card and mobile payments, invoice, installment, banking and much more.
 
-For more information about our payment services, please visit [www.payer.se](https://www.payer.se).
+For more information about our payment services, please visit [www.payer.se](http://www.payer.se).
 
 ## Requirements
 
