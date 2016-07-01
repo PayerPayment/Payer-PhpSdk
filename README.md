@@ -12,15 +12,10 @@ For more information about our payment services, please visit [www.payer.se](htt
   * [Composer](https://getcomposer.org)
   * [Payer Credentials](https://payer.se): Missing credentials? Please contact the customer service at [teknik@payer.se](mailto:teknik@payer.se)
 
-## Examples
-
-For integration examples, please see the `docs` directory in the package.
-
 ## Quickstart
 
   * Run `composer require payer/sdk` to install the package
-  * Make the package available in your project by entering `require_once 'vendor/autoload.php'`
-  * Now require each resource that you want to use. E.g. `use Payer\Sdk\Resource\*'`
+  * See the examples in `docs/examples` for further usage
 
 ## Running Test Cases
 
