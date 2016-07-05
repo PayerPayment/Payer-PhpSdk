@@ -24,7 +24,7 @@
 
 use Payer\Sdk\Client;
 use Payer\Sdk\Transport\Http\Response;
-use Payer\Sdk\Resource\Challange;
+use Payer\Sdk\Resource\Challenge;
 
 class GetAddressTest extends PayerTestCase {
 
@@ -38,25 +38,25 @@ class GetAddressTest extends PayerTestCase {
     }
 
     /**
-     * Test fetch Challange Hash
+     * Test fetch Challenge Hash
      *
      * @return void
      *
      */
-    public function testChallangeResponse()
+    public function testChallengeResponse()
     {
-        print "testChallangeResponse()\n";
+        print "testChallengeResponse()\n";
 
-        $challangeResponse = Response::fromJson(
-            $this->stub->challange->create()
+        $challengeResponse = Response::fromJson(
+            $this->stub->challenge->create()
         );
-        print_r($challangeResponse);
+        print_r($challengeResponse);
 
-        $this->assertTrue($challangeResponse['status'] == 0);
+        $this->assertTrue($challengeResponse['status'] == 0);
     }
 
     /**
-     * Test fetch address details with the requested Challange Hash
+     * Test fetch address details with the requested Challenge Hash
      *
      * @return void
      *
@@ -65,11 +65,11 @@ class GetAddressTest extends PayerTestCase {
     {
         print "testGetAddress()\n";
 
-        $challangeResponse = $this->stub->createDummyChallange();
+        $challengeResponse = $this->stub->createDummyChallenge();
 
         $getAddressData = array(
             'identity_number' => '5567368724',
-            'hash'            => $challangeResponse['hash']
+            'challenge_token' => $challengeResponse['hash']
         );
 
         $getAddressResponse = Response::fromJson(

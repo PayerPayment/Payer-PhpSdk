@@ -1128,15 +1128,15 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 	}
 
 	/**
-	 * Generates the Challange hash
+	 * Generates the Challenge hash
 	 *
-	 * @param $challange
+	 * @param $challenge
 	 * @return string
 	 *
 	 */
-	public function getChallangeResponse($challange)
+	public function getChallengeResponse($challenge)
 	{
-		return md5 ( $this->getKeyA () . "$challange" );
+		return md5 ( $this->getKeyA () . "$challenge" );
 	}
 
 	/**

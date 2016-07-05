@@ -26,7 +26,7 @@ require_once "Credentials.php";
 require_once "../../vendor/autoload.php";
 
 use Payer\Sdk\Client;
-use Payer\Sdk\Resource\Challange;
+use Payer\Sdk\Resource\Challenge;
 use Payer\Sdk\Resource\GetAddress;
 use Payer\Sdk\Transport\Http\Response;
 
@@ -38,12 +38,12 @@ try {
 
     $gateway = Client::create($credentials);
 
-    $challange = new Challange($gateway);
-    $challangeResponse = Response::fromJson(
-        $challange->create()
+    $challenge = new Challenge($gateway);
+    $challengeResponse = Response::fromJson(
+        $challenge->create()
     );
 
-    $data['hash'] = $challangeResponse['hash'];
+    $data['challenge_token'] = $challengeResponse['hash'];
 
     $getAddress = new GetAddress($gateway);
     $getAddressResponse = Response::fromJson(
@@ -53,10 +53,11 @@ try {
     print_r($getAddressResponse);
 
     $identityNumber     = $getAddressResponse['identity_number'];
-    // $organisationName   = $getAddressResponse['organisation']['name'];
-    // $firstName          = $getAddressResponse['first_name'];
-    // $lastName           = $getAddressResponse['last_name'];
-    $address            = $getAddressResponse['address'];
+    $organisationName   = $getAddressResponse['organisation'];
+    $firstName          = $getAddressResponse['first_name'];
+    $lastName           = $getAddressResponse['last_name'];
+    $address1           = $getAddressResponse['address_1'];
+    $address2           = $getAddressResponse['address_2'];
     $zipCode            = $getAddressResponse['zip_code'];
     $city               = $getAddressResponse['city'];
     $country            = $getAddressResponse['country'];
@@ -65,4 +66,3 @@ try {
     print_r($e);
     die;
 }
-

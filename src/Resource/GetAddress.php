@@ -73,9 +73,9 @@ class GetAddress extends PayerResource
             throw new InvalidRequestException("Missing argument: 'identity_number'");
         }
 
-        $hash = $input['hash'];
-        if (empty($hash)) {
-            throw new InvalidRequestException("Missing argument: 'hash'");
+        $challengeToken = $input['challenge_token'];
+        if (empty($challengeToken)) {
+            throw new InvalidRequestException("Missing argument: 'challenge_token'");
         }
 
         $post = $this->gateway->getPostService();
@@ -84,7 +84,7 @@ class GetAddress extends PayerResource
         $http = new Http;
 
         $request = new Request(
-            $this->gateway->getDomain() . $this->relativePath . '?website=' . $credentials['agent_id'] . '&orgnr=' . $identityNumber . "&hash=" . $hash
+            $this->gateway->getDomain() . $this->relativePath . '?website=' . $credentials['agent_id'] . '&orgnr=' . $identityNumber . "&hash=" . $challengeToken
         );
 
         $response = $http->request($request);
@@ -100,22 +100,16 @@ class GetAddress extends PayerResource
         $customer = $obj['consumer'];
 
         $getAddress = array();
-        $getAddress['status']          = $customer['status'];
-        $getAddress['identity_number'] = $customer['personalnumber'];
-
-        if (!empty($customer['company'])) {
-            $getAddress['organisation'] = array(
-                'name' => $customer['company']
-            );
-        } else {
-            $getAddress['first_name']  = $customer['firstname'];
-            $getAddress['last_name']   = $customer['lastname'];
-        }
-
-        $getAddress['address']     = $customer['address'];
-        $getAddress['zip_code']    = $customer['zipcode'];
-        $getAddress['city']        = $customer['city'];
-        $getAddress['country']     = $customer['country'];
+        $getAddress['status']           = $customer['status'];
+        $getAddress['identity_number']  = $customer['personalnumber'];
+        $getAddress['organisation']     = $customer['company'];
+        $getAddress['first_name']       = $customer['firstname'];
+        $getAddress['last_name']        = $customer['lastname'];
+        $getAddress['address_1']        = $customer['address'];
+        $getAddress['address_2']        = '';
+        $getAddress['zip_code']         = $customer['zipcode'];
+        $getAddress['city']             = $customer['city'];
+        $getAddress['country']          = $customer['country'];
 
         return Response::fromArray($getAddress);
     }

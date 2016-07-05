@@ -24,7 +24,7 @@
 
 use Payer\Sdk\Exception\InvalidRequestException;
 
-use Payer\Sdk\Resource\Challange;
+use Payer\Sdk\Resource\Challenge;
 use Payer\Sdk\Resource\GetAddress;
 use Payer\Sdk\Resource\Invoice;
 use Payer\Sdk\Resource\Order;
@@ -38,12 +38,12 @@ class PayerResourceStub
 {
 
     /**
-     * Payer Challange Resource
+     * Payer Challenge Resource
      *
-     * @var \Payer\Sdk\Resource\Challange
+     * @var \Payer\Sdk\Resource\Challenge
      *
      */
-    public $challange;
+    public $challenge;
 
     /**
      * Payer GetAddress Resource
@@ -96,7 +96,7 @@ class PayerResourceStub
 
     public function __construct(PayerGatewayInterface $gateway)
     {
-        $this->challange = new Challange($gateway);
+        $this->challenge = new Challenge($gateway);
         $this->getAddress = new GetAddress($gateway);
         $this->invoice = new Invoice($gateway);
         $this->order = new Order($gateway);
@@ -106,18 +106,18 @@ class PayerResourceStub
     }
 
     /**
-     * Creates a Challange token
+     * Creates a Challenge token
      *
      * @return array
      */
-    public function createDummyChallange()
+    public function createDummyChallenge()
     {
-        $challangeResponse = Response::fromJson(
-            $this->challange->create()
+        $challengeResponse = Response::fromJson(
+            $this->challenge->create()
         );
-        print_r($challangeResponse);;
+        print_r($challengeResponse);;
 
-        return $challangeResponse;
+        return $challengeResponse;
     }
 
     /**

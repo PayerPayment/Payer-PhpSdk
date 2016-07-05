@@ -30,7 +30,7 @@ use Payer\Sdk\Transport\Http;
 
 use Payer\Sdk\PayerGatewayInterface;
 
-class Challange extends PayerResource
+class Challenge extends PayerResource
 {
 
     /**
@@ -58,11 +58,11 @@ class Challange extends PayerResource
     }
 
     /**
-     * Fetches the Challange hash object
+     * Fetches the Challenge hash object
      *
      * NOTICE: This method depends on valid Post credentials
 
-     * @return string The Challange hash object array as json
+     * @return string The Challenge hash object array as json
      *
      */
     public function create()
@@ -79,8 +79,8 @@ class Challange extends PayerResource
         $response = $http->request($request);
         $obj = Response::fromJson($response->getData());
 
-        $challange = $obj['auth']['challange'];
-        $hash = Encryptor::makeMd5Hash($credentials['key_1'], $challange);
+        $challenge = $obj['auth']['challange'];
+        $hash = Encryptor::makeMd5Hash($credentials['key_1'], $challenge);
 
         return Response::fromArray(
             array(
