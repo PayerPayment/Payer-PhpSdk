@@ -59,14 +59,12 @@ class PayerTestCase extends \PHPUnit_Framework_TestCase {
     {
         $this->credentials = array(
           'agent_id' => '',
+
           'post' => array(
               'key_1'             => '',
               'key_2'             => ''
           ),
-          'rest'  => array(
-              'username' => '',
-              'password' => ''
-          ),
+
           'soap'  => array(
               'username' => '',
               'password' => ''

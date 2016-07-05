@@ -2,6 +2,13 @@
         PAYER PHP SDK CHANGELOG
 ***************************************
 
+v1.0.4
+----------------
+Date: 2016-07-05
+
+    Mathias Åkerberg <mathias.akerberg@payer.se>
+        Updated the GetAddress model
+
 v1.0.3
 ----------------
 Date: 2016-07-01
