@@ -69,7 +69,8 @@ class GetAddressTest extends PayerTestCase {
 
         $getAddressData = array(
             'identity_number' => '5567368724',
-            'challenge_token' => $challengeResponse['hash']
+            'zip_code'        => '10261',
+            'challenge_token' => $challengeResponse['challenge_token']
         );
 
         $getAddressResponse = Response::fromJson(

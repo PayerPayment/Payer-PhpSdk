@@ -37,8 +37,12 @@ class GetAddress extends DataFormatter
             $getAddress['identity_number'] = '';
         }
 
-        if (!array_key_exists("hash", $getAddress)) {
-            $getAddress['hash'] = '';
+        if (!array_key_exists("zip_code", $getAddress)) {
+            $getAddress['zip_code'] = '';
+        }
+
+        if (!array_key_exists("challenge_token", $getAddress)) {
+            $getAddress['challenge_token'] = '';
         }
 
         return $getAddress;

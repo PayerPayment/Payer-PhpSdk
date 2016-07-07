@@ -84,10 +84,10 @@ class Challenge extends PayerResource
 
         return Response::fromArray(
             array(
-                'id'        => $obj['auth']['id'],
-                'agent_id'  => $obj['auth']['website'],
-                'hash'      => $hash,
-                'status'    => $obj['auth']['status']
+                'id'                => $obj['auth']['id'],
+                'agent_id'          => $obj['auth']['website'],
+                'challenge_token'   => $hash,
+                'status'            => $obj['auth']['status']
             )
         );
     }

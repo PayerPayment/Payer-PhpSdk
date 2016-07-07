@@ -31,7 +31,8 @@ use Payer\Sdk\Resource\GetAddress;
 use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
-    'identity_number' => '5567368724'   // The identity number of the object to fetch
+    'identity_number' => '5567368724',   // The identity number of the object to fetch
+    'zip_code'        => '10261'
 );
 
 try {
@@ -43,7 +44,7 @@ try {
         $challenge->create()
     );
 
-    $data['challenge_token'] = $challengeResponse['hash'];
+    $data['challenge_token'] = $challengeResponse['challenge_token'];
 
     $getAddress = new GetAddress($gateway);
     $getAddressResponse = Response::fromJson(

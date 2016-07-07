@@ -45,7 +45,7 @@ class GetAddress extends PayerResource
      * @var string
      *
      */
-    protected $relativePath = '/pages/helper/getAddressEx.jsp';
+    protected $relativePath = '/api/getAddress';
 
     public function __construct(PayerGatewayInterface $gateway)
     {
@@ -73,6 +73,11 @@ class GetAddress extends PayerResource
             throw new InvalidRequestException("Missing argument: 'identity_number'");
         }
 
+        $zipCode = $input['zip_code'];
+        if (empty($zipCode)) {
+            throw new InvalidRequestException("Missing argument: 'zip_code'");
+        }
+
         $challengeToken = $input['challenge_token'];
         if (empty($challengeToken)) {
             throw new InvalidRequestException("Missing argument: 'challenge_token'");
@@ -81,15 +86,27 @@ class GetAddress extends PayerResource
         $post = $this->gateway->getPostService();
         $credentials = $post->getCredentials();
 
-        $http = new Http;
+        $requestHeaders = array();
+        $requestHeaders['Content-Type'] = 'application/json; charset=utf-8';
 
-        $request = new Request(
-            $this->gateway->getDomain() . $this->relativePath . '?website=' . $credentials['agent_id'] . '&orgnr=' . $identityNumber . "&hash=" . $challengeToken
+        $data = array(
+            'identity_number'   => $identityNumber,
+            'zip_code'          => $zipCode,
+            'challenge_token'   => $challengeToken,
+            'agent_id'          => $credentials['agent_id']
         );
 
+        $request = new Request(
+            $this->gateway->getDomain() . $this->relativePath,
+            'POST',
+            $requestHeaders,
+            json_encode($data)
+        );
+
+        $http = new Http;
         $response = $http->request($request);
 
-        $obj = Response::fromJson(
+        $customer = Response::fromJson(
             iconv(
                 'ISO-8859-1',
                 'UTF-8',
@@ -97,17 +114,15 @@ class GetAddress extends PayerResource
             )
         );
 
-        $customer = $obj['consumer'];
-
         $getAddress = array();
         $getAddress['status']           = $customer['status'];
-        $getAddress['identity_number']  = $customer['personalnumber'];
-        $getAddress['organisation']     = $customer['company'];
-        $getAddress['first_name']       = $customer['firstname'];
-        $getAddress['last_name']        = $customer['lastname'];
-        $getAddress['address_1']        = $customer['address'];
-        $getAddress['address_2']        = '';
-        $getAddress['zip_code']         = $customer['zipcode'];
+        $getAddress['identity_number']  = $customer['identity_number'];
+        $getAddress['organisation']     = $customer['organisation'];
+        $getAddress['first_name']       = $customer['first_name'];
+        $getAddress['last_name']        = $customer['last_name'];
+        $getAddress['address_1']        = $customer['address_1'];
+        $getAddress['address_2']        = $customer['address_2'];
+        $getAddress['zip_code']         = $customer['zip_code'];
         $getAddress['city']             = $customer['city'];
         $getAddress['country']          = $customer['country'];
 

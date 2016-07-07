@@ -1,9 +1,9 @@
 {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "name": "payer/sdk",
     "type": "library",
-    "description": "The All-in-one Payer API for PHP Developers. This is the only package you need to get started with Payers payment solution.",
-    "keywords": ["payer sdk", "payer", "sdk", "payment"],
+    "description": "The all-in-one Payer API for PHP Developers. This is the only package you need to get started with Payers payment services.",
+    "keywords": ["payer sdk", "payer", "sdk", "payment", "ecommerce"],
     "homepage": "https://github.com/PayerPayment/Payer-PhpSdk",
     "license": "Apache-2.0",
     "authors": [
