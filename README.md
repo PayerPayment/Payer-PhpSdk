@@ -1,3 +1,5 @@
+![Payer Logotype](http://payer.se/public/PAYER_LOGO_GITHUB_2016.jpg)
+
 # Payer Php SDK
 
 This composer package includes everything you need to get started with the integration to Payers secure payment services. Payer is supporting all popular payment methods such as card and mobile payments, invoice, installment, banking and much more.
