@@ -53,7 +53,7 @@
  *
  */
 
-require_once "Credentials.php";
+require_once "PayerCredentials.php";
 require_once "../../vendor/autoload.php";
 
 use Payer\Sdk\Client;

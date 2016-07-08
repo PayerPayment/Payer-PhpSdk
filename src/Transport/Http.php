@@ -68,8 +68,15 @@ class Http implements HttpTransportInterface
         }
         $this->_curl->setOpt(CURLOPT_HTTPHEADER, $headers);
 
-        $body = $this->_curl->exec();
-        $info = $this->_curl->info();
+        $this->_curl->setOpt(CURLOPT_RETURNTRANSFER, true);
+        $this->_curl->setOpt(CURLOPT_CONNECTTIMEOUT, 15);
+        $this->_curl->setOpt(CURLOPT_TIMEOUT, 15);
+
+        $this->_curl->setOpt(CURLOPT_SSL_VERIFYHOST, 2);
+        $this->_curl->setOpt(CURLOPT_SSL_VERIFYPEER, true);
+
+        $body  = $this->_curl->exec();
+        $info  = $this->_curl->info();
         $error = $this->_curl->error();
 
         $statusCode =  intval($info['http_code']);

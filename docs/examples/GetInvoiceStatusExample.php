@@ -22,7 +22,7 @@
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache license v2.0
  */
 
-require_once "Credentials.php";
+require_once "PayerCredentials.php";
 require_once "../../vendor/autoload.php";
 
 use Payer\Sdk\Client;
