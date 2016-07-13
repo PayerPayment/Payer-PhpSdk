@@ -40,11 +40,9 @@ try {
     $invoice = new Invoice($gateway);
 
     // Fetch the order status
-    $getInvoiceResponse = Response::fromJson(
-        $invoice->getStatus($data)
-    );
+    $getInvoiceResponse = $invoice->getStatus($data);
 
-    print_r($getInvoiceResponse);
+    var_dump($getInvoiceResponse);
 
     $invoiceNumber =    $getInvoiceResponse['invoice_number'];
     $orderNumber =      $getInvoiceResponse['order_number'];
@@ -62,6 +60,5 @@ try {
     $options =          $getInvoiceResponse['options'];
     $deliveryType =     $getInvoiceResponse['delivery_type'];
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }

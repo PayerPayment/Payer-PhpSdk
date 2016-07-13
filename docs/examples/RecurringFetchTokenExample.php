@@ -53,7 +53,6 @@ try {
     // Next step in 'RecurringDebitExample.php'
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 

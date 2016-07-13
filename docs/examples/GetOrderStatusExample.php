@@ -39,11 +39,9 @@ try {
     $order = new Order($gateway);
 
     // Fetch the order status
-    $getOrderResponse = Response::fromJson(
-        $order->getStatus($data)
-    );
+    $getOrderResponse = $order->getStatus($data);
 
-    print_r($getOrderResponse);
+    var_dump($getOrderResponse);
 
     $orderId            = $getOrderResponse['order_id'];
     $status             = $getOrderResponse['status'];
@@ -62,6 +60,5 @@ try {
     $dueDate            = $getOrderResponse['invoice']['due_date'];
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }

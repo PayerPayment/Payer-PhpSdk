@@ -33,20 +33,18 @@
  */
 $credentials = array(
 
-    // 'agent_id' => '',
+    //'agent_id' => '',
 
     // Required by Purchase, GetAddress, Challenge
-    //
-    // 'post' => array(
-    //     'key_1'             => '',
-    //     'key_2'             => ''
-    // ),
+    //'post' => array(
+    //    'key_1'             => '',
+    //    'key_2'             => ''
+    //),
 
-    // Required by Order and Invoice
-    //
-    // 'soap'  => array(
-    //     'username' => '',
-    //     'password' => ''
-    // )
+    // Required by Invoice, Order
+    //'soap'  => array(
+    //    'username' => '',
+    //    'password' => ''
+    //)
 
 );

@@ -42,14 +42,13 @@ try {
     $gateway = Client::create($credentials);
 
     $invoice = new Invoice($gateway);
-    $sendInvoiceResponse = Response::fromJson(
-        $invoice->send($data)
-    );
+    $sendInvoiceResponse = $invoice->send($data);
+
+    var_dump($sendInvoiceResponse);
 
     $processId = $sendInvoiceResponse['process_id'];
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 

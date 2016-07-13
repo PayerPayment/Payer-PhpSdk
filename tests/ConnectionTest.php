@@ -69,25 +69,6 @@ class ConnectionTest extends PayerTestCase {
     }
 
     /**
-     * Test Payer Rest credentials
-     *
-     * @return void
-     */
-    public function testRestServiceCredentialSuccess()
-    {
-        print "testRestServiceCredentialSuccess()\n";
-
-        $credentials = array(
-            'agent_id' => $this->credentials['agent_id'],
-            'rest' => $this->credentials['rest'] // Only rest
-        );
-
-        $gateway = Client::create($credentials);
-
-        $this->assertTrue(isset($gateway));
-    }
-
-    /**
      * Test Payer Soap credentials
      *
      * @return void

@@ -112,10 +112,9 @@ class PayerResourceStub
      */
     public function createDummyChallenge()
     {
-        $challengeResponse = Response::fromJson(
-            $this->challenge->create()
-        );
-        print_r($challengeResponse);;
+        $challengeResponse = $this->challenge->create();
+
+        var_dump($challengeResponse);;
 
         return $challengeResponse;
     }
@@ -135,10 +134,9 @@ class PayerResourceStub
             'order_id' => $createOrderResponse['order_id']
         );
 
-        $createInvoiceResponse = Response::fromJson(
-            $this->order->commit($commitData)
-        );
-        print_r($createInvoiceResponse);
+        $createInvoiceResponse = $this->order->commit($commitData);
+
+        var_dump($createInvoiceResponse);
 
         return $createInvoiceResponse;
     }
@@ -158,18 +156,15 @@ class PayerResourceStub
             'order_id' => $createOrderResponse['order_id']
         );
 
-        $createInvoiceResponse = Response::fromJson(
-            $this->order->commit($commitData)
-        );
+        $createInvoiceResponse = $this->order->commit($commitData);
 
-        $activateInvoiceResponse = Response::fromJson(
-            $this->invoice->activate(
-                array(
-                    'invoice_number' => $createInvoiceResponse['invoice_number']
-                )
+        $activateInvoiceResponse = $this->invoice->activate(
+            array(
+                'invoice_number' => $createInvoiceResponse['invoice_number']
             )
         );
-        print_r($activateInvoiceResponse);
+
+        var_dump($activateInvoiceResponse);
 
         return $activateInvoiceResponse;
     }
@@ -183,10 +178,9 @@ class PayerResourceStub
      */
     public function createDummyOrder()
     {
-        $createOrderResponse = Response::fromJson(
-            $this->order->create($this->orderData)
-        );
-        print_r($createOrderResponse);
+        $createOrderResponse = $this->order->create($this->orderData);
+
+        var_dump($createOrderResponse);
 
         return $createOrderResponse;
     }
@@ -200,14 +194,20 @@ class PayerResourceStub
     private function _setupDummyData()
     {
         $this->orderData = array(
-            'charset' => 'UTF-8',
-            'description' => 'Payer Sdk Test ' . date('Y-m-d H:i:s'),
-            'reference_id' => base64_encode(rand()),
-            'test_mode' => true,
+
+            'charset'       => 'UTF-8',
+            'description'   => 'Payer Sdk Test ' . date('Y-m-d H:i:s'),
+            'reference_id'  => base64_encode(rand()),
+            'test_mode'     => true,
+
             'customer' => array(
-                'identity_number' => '199001011234',
+                'identity_number' => '556736-8724',
                 'first_name'    => 'Test',
                 'last_name'     => 'Person',
+                'organisation' => array(
+                    'name'      => 'Payer Financial Services AB',
+                    //'reference' => 'Test person'
+                ),
                 'address'       => array(
                     'co'            => '',
                     'address_1'     => 'Testvägen 123',
@@ -221,17 +221,15 @@ class PayerResourceStub
                     'work'      => '0987654321',
                     'mobile'    => '111222333444'
                 ),
-                'email' => 'demo@payer.se',
-                    //'organisation' => array(
-                    //    'name'      => 'Test Company',
-                    //    'reference' => 'Test person'
-                    //)
+                'email' => 'demo@payer.se'
             ),
+
             'options' => array(
-                //'delivery_type' => 'print',
+                //'delivery_type' => '',
                 //'template_type' => 2,
-                //'style'         => 'relaxed'
+                //'style'         => ''
             ),
+
             'items' => array(
                 array(
                     'type'                  => 'freeform',
@@ -255,6 +253,7 @@ class PayerResourceStub
                     //'dist_agent_id'         => null
                 )
             )
+
         );
 
         $this->purchaseData = array(

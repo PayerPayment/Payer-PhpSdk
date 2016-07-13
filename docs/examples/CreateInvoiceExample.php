@@ -27,7 +27,6 @@ require_once "../../vendor/autoload.php";
 
 use Payer\Sdk\Client;
 use Payer\Sdk\Resource\Order;
-use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
     'order_id' => '' // Enter the id of the order to commit
@@ -39,14 +38,13 @@ try {
     $order = new Order($gateway);
 
     // Commit and transfer the order to an invoice
-    $getOrderResponse = Response::fromJson(
-        $order->commit($data)
-    );
+    $commitOrderResponse = $order->commit($data);
 
-    $invoiceNumber = $getOrderResponse['invoice_number'];
+    var_dump($commitOrderResponse);
+
+    $invoiceNumber = $commitOrderResponse['invoice_number'];
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 

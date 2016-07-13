@@ -35,9 +35,13 @@ $data = array(
     'reference_id'  => base64_encode(rand()),
     'test_mode'     => true,
     'customer'  => array(
-        'identity_number' => '199001011234',
+        'identity_number' => '556736-8724',
         'first_name'    => 'Test',
         'last_name'     => 'Person',
+        'organisation' => array(
+            'name'      => 'Payer Financial Services AB',
+            'reference' => ''
+        ),
         'address'       => array(
             'co'            => '',
             'address_1'     => 'Testvägen 123',
@@ -51,15 +55,11 @@ $data = array(
             'work'      => '0987654321',
             'mobile'    => '111222333444'
         ),
-        'email' => 'demo@payer.se',
-            //'organisation' => array(
-            //    'name'      => '',
-            //    'reference' => ''
-            //)
+        'email' => 'demo@payer.se'
     ),
     'options' => array(
-        //'delivery_type' => 'print',
-        //'template_type' => 2,
+        //'delivery_type' => '',
+        //'template_type' => ,
         //'style'         => ''
     ),
     'items' => array(
@@ -94,15 +94,13 @@ try {
     $order = new Order($gateway);
 
     // Create the order
-    $createOrderResponse = Response::fromJson(
-        $order->create($data)
-    );
-    print_r($createOrderResponse);
+    $createOrderResponse = $order->create($data);
+
+    var_dump($createOrderResponse);
 
     $orderId = $createOrderResponse['order_id'];
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 

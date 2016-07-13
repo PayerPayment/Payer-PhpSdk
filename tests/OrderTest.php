@@ -43,11 +43,9 @@ class OrderTest extends PayerTestCase {
 
         $orderData = $this->stub->orderData;
 
-        $createOrderResponse = Response::fromJson(
-            $this->stub->order->create($orderData)
-        );
+        $createOrderResponse = $this->stub->order->create($orderData);
 
-        print_r($createOrderResponse);
+        var_dump($createOrderResponse);
 
         $this->assertTrue(
             is_integer($createOrderResponse['order_id']) &&
@@ -71,10 +69,9 @@ class OrderTest extends PayerTestCase {
             'order_id' => $createOrderResponse['order_id']
         );
 
-        $getStatusResponse = Response::fromJson(
-            $this->stub->order->getStatus($getStatusData)
-        );
-        print_r($getStatusResponse);
+        $getStatusResponse = $this->stub->order->getStatus($getStatusData);
+
+        var_dump($getStatusResponse);
 
         $this->assertTrue(!empty($getStatusResponse));
     }
@@ -95,10 +92,9 @@ class OrderTest extends PayerTestCase {
             'order_id' => $createOrderResponse['order_id']
         );
 
-        $commitOrderResponse = Response::fromJson(
-            $this->stub->order->commit($commitData)
-        );
-        print_r($commitOrderResponse);
+        $commitOrderResponse = $this->stub->order->commit($commitData);
+
+        var_dump($commitOrderResponse);
 
         $this->assertTrue($commitOrderResponse['invoice_number'] > 0);
     }

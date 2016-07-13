@@ -114,19 +114,18 @@ class GetAddress extends PayerResource
             )
         );
 
-        $getAddress = array();
-        $getAddress['status']           = $customer['status'];
-        $getAddress['identity_number']  = $customer['identity_number'];
-        $getAddress['organisation']     = $customer['organisation'];
-        $getAddress['first_name']       = $customer['first_name'];
-        $getAddress['last_name']        = $customer['last_name'];
-        $getAddress['address_1']        = $customer['address_1'];
-        $getAddress['address_2']        = $customer['address_2'];
-        $getAddress['zip_code']         = $customer['zip_code'];
-        $getAddress['city']             = $customer['city'];
-        $getAddress['country']          = $customer['country'];
-
-        return Response::fromArray($getAddress);
+        return array(
+            'status'            => $customer['status'],
+            'identity_number'   => $customer['identity_number'],
+            'organisation'      => $customer['organisation'],
+            'first_name'        => $customer['first_name'],
+            'last_name'         => $customer['last_name'],
+            'address_1'         => $customer['address_1'],
+            'address_2'         => $customer['address_2'],
+            'zip_code'          => $customer['zip_code'],
+            'city'              => $customer['city'],
+            'country'           => $customer['country']
+        );
     }
 
 }

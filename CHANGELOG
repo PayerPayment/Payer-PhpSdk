@@ -2,6 +2,13 @@
         PAYER PHP SDK CHANGELOG
 ***************************************
 
+v1.0.7
+----------------
+Date: 2016-07-07
+
+    Mathias Åkerberg <mathias.akerberg@payer.se>
+        Updated response model
+
 v1.0.6
 ----------------
 Date: 2016-07-07

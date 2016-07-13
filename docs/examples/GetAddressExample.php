@@ -31,8 +31,8 @@ use Payer\Sdk\Resource\GetAddress;
 use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
-    'identity_number' => '5567368724',   // The identity number of the object to fetch
-    'zip_code'        => '10261'
+    'identity_number' => '',
+    'zip_code'        => ''
 );
 
 try {
@@ -40,18 +40,20 @@ try {
     $gateway = Client::create($credentials);
 
     $challenge = new Challenge($gateway);
-    $challengeResponse = Response::fromJson(
-        $challenge->create()
-    );
+
+    // Fetch the session token
+    $challengeResponse = $challenge->create();
+
+    var_dump($challengeResponse);
 
     $data['challenge_token'] = $challengeResponse['challenge_token'];
 
     $getAddress = new GetAddress($gateway);
-    $getAddressResponse = Response::fromJson(
-        $getAddress->create($data)
-    );
 
-    print_r($getAddressResponse);
+    // Fetch the address
+    $getAddressResponse = $getAddress->create($data);
+
+    var_dump($getAddressResponse);
 
     $identityNumber     = $getAddressResponse['identity_number'];
     $organisationName   = $getAddressResponse['organisation'];
@@ -64,6 +66,5 @@ try {
     $country            = $getAddressResponse['country'];
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }

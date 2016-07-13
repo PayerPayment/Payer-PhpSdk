@@ -47,10 +47,9 @@ class GetAddressTest extends PayerTestCase {
     {
         print "testChallengeResponse()\n";
 
-        $challengeResponse = Response::fromJson(
-            $this->stub->challenge->create()
-        );
-        print_r($challengeResponse);
+        $challengeResponse = $this->stub->challenge->create();
+
+        var_dump($challengeResponse);
 
         $this->assertTrue($challengeResponse['status'] == 0);
     }
@@ -73,10 +72,9 @@ class GetAddressTest extends PayerTestCase {
             'challenge_token' => $challengeResponse['challenge_token']
         );
 
-        $getAddressResponse = Response::fromJson(
-            $this->stub->getAddress->create($getAddressData)
-        );
-        print_r($getAddressResponse);
+        $getAddressResponse = $this->stub->getAddress->create($getAddressData);
+
+        var_dump($getAddressResponse);
 
         $this->assertTrue($getAddressResponse['status'] == 0);
     }

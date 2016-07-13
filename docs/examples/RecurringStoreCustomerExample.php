@@ -107,7 +107,6 @@ try {
     // Next step in 'RecurringFetchTokenExample.php'
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 

@@ -79,10 +79,8 @@ class Invoice extends PayerResource
         );
         $soap->close();
 
-        return Response::fromArray(
-            array(
-                'invoice_number' => $invoiceNumber,
-            )
+        return array(
+            'invoice_number' => $invoiceNumber,
         );
     }
 
@@ -120,13 +118,11 @@ class Invoice extends PayerResource
         );
         $soap->close();
 
-        return Response::fromArray(
-            array(
-                'binding_id'        => $binding['Id'],
-                'entry_id'          => $binding['EntryId'],
-                'create_date'       => $binding['CreateDate'],
-                'invoice_number'    => $binding['InvoiceNumber']
-            )
+        return array(
+            'binding_id'        => $binding['Id'],
+            'entry_id'          => $binding['EntryId'],
+            'create_date'       => $binding['CreateDate'],
+            'invoice_number'    => $binding['InvoiceNumber']
         );
     }
 
@@ -154,24 +150,22 @@ class Invoice extends PayerResource
         $invoiceStatus = (array) $soap->invoiceStatus($invoiceNumber);
         $soap->close();
 
-        return Response::fromArray(
-            array(
-                'invoice_number'    => $invoiceStatus['InvoiceNumber'],
-                'order_number'      => $invoiceStatus['OrderNumber'],
-                'transaction_id'    => $invoiceStatus['ChargeLogId'],
-                'customer' => array(
-                    'user_id'               => $invoiceStatus['UserId'],
-                    'merchant_customer_id'  => $invoiceStatus['MerchantCustomerId']
-                ),
-                'total_amount'      => $invoiceStatus['InvoiceAmount'],
-                'rounding_amount'   => $invoiceStatus['RoundingAmount'],
-                'to_pay_amount'     => $invoiceStatus['ToPayAmount'],
-                'invoice_date'      => $invoiceStatus['InvoiceDate'],
-                'due_date'          => $invoiceStatus['DueDate'],
-                'paid_date'         => $invoiceStatus['PaidDate'],
-                'options'           => $invoiceStatus['Options'],
-                'delivery_type'     => $invoiceStatus['DeliveryType']
-            )
+        return array(
+            'invoice_number'    => $invoiceStatus['InvoiceNumber'],
+            'order_number'      => $invoiceStatus['OrderNumber'],
+            'transaction_id'    => $invoiceStatus['ChargeLogId'],
+            'customer' => array(
+                'user_id'               => $invoiceStatus['UserId'],
+                'merchant_customer_id'  => $invoiceStatus['MerchantCustomerId']
+            ),
+            'total_amount'      => $invoiceStatus['InvoiceAmount'],
+            'rounding_amount'   => $invoiceStatus['RoundingAmount'],
+            'to_pay_amount'     => $invoiceStatus['ToPayAmount'],
+            'invoice_date'      => $invoiceStatus['InvoiceDate'],
+            'due_date'          => $invoiceStatus['DueDate'],
+            'paid_date'         => $invoiceStatus['PaidDate'],
+            'options'           => $invoiceStatus['Options'],
+            'delivery_type'     => $invoiceStatus['DeliveryType']
         );
     }
 
@@ -190,11 +184,7 @@ class Invoice extends PayerResource
         $templateEntries = (array) $soap->getActiveInvoiceTemplateEntries();
         $soap->close();
 
-        $templateEntries = $this->_handleTemplateEntryFormat($templateEntries);
-
-        return Response::fromArray(
-            $templateEntries
-        );
+        return $this->_handleTemplateEntryFormat($templateEntries);
     }
 
     /**
@@ -241,10 +231,8 @@ class Invoice extends PayerResource
         );
         $soap->close();
 
-        return Response::fromArray(
-            array(
-                'transaction_id' => $refundId
-            )
+        return array(
+            'transaction_id' => $refundId
         );
     }
 
@@ -285,10 +273,8 @@ class Invoice extends PayerResource
         );
         $soap->close();
 
-        return Response::fromArray(
-            array(
-                'process_id' => $returnCode
-            )
+        return array(
+            'process_id' => $returnCode
         );
     }
 

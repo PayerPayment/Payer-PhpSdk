@@ -38,29 +38,28 @@ try {
     $gateway = Client::create($credentials);
 
     $invoice = new Invoice($gateway);
-    $getStatusResponse = Response::fromJson(
-        $invoice->getStatus($data)
-    );
+    $getStatusResponse = $invoice->getStatus($data);
+
+    var_dump($getStatusResponse);
 
     $transactionId = $getStatusResponse['transaction_id'];
     $totalAmount = $getStatusResponse['total_amount'];
 
-    $data['transaction_id'] =   $transactionId;
-    $data['reason'] =           'This is a very good reason';
-    $data['amount'] =           $totalAmount;
+    $data['transaction_id'] = $transactionId;
+    $data['reason'] = 'This is a very good reason';
+    $data['amount'] = $totalAmount;
 
     // If you have multiple vat percentages, each percentage
     // has to be refunded as a single call.
     $data['vat_percentage'] =   25;
 
-    $refundInvoiceResponse = Response::fromJson(
-        $invoice->refund($data)
-    );
+    $refundInvoiceResponse = $invoice->refund($data);
+
+    var_dump($refundInvoiceResponse);
 
     $processId = $refundInvoiceResponse['process_id'];
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 

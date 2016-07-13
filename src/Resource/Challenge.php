@@ -50,10 +50,8 @@ class Challenge extends PayerResource
         $rest = $this->gateway->getRestService();
         $response =  Response::fromJson($rest->ping());
 
-        return Response::fromArray(
-            array(
-                'status' => $response['status']
-            )
+        return array(
+            'status' => $response['status']
         );
     }
 
@@ -82,13 +80,11 @@ class Challenge extends PayerResource
         $challenge = $obj['auth']['challange'];
         $hash = Encryptor::makeMd5Hash($credentials['key_1'], $challenge);
 
-        return Response::fromArray(
-            array(
-                'id'                => $obj['auth']['id'],
-                'agent_id'          => $obj['auth']['website'],
-                'challenge_token'   => $hash,
-                'status'            => $obj['auth']['status']
-            )
+        return array(
+            'id'                => $obj['auth']['id'],
+            'agent_id'          => $obj['auth']['website'],
+            'challenge_token'   => $hash,
+            'status'            => $obj['auth']['status']
         );
     }
 

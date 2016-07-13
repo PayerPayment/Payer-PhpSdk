@@ -69,12 +69,11 @@ $data = array(
 try {
     $gateway = Client::create($credentials);
 
-$purchase = new Purchase($gateway);
-$purchase->createSettlementResource($data);
+    $purchase = new Purchase($gateway);
+    $purchase->createSettlementResource($data);
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 
 

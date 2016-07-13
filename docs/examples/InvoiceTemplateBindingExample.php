@@ -40,27 +40,15 @@ try {
 
     $invoice = new Invoice($gateway);
 
-    // Fetch an array of active template entries
-    $templateEntryResponse = Response::fromJson(
-        $invoice->getActiveTemplateEntries()
-    );
-    print_r($templateEntryResponse);
-
-    // Example of how to use a fetched entry
+    // Fetches an array of active template entries
     //
-    // $entryId =       $templateEntryResponse[0]['entry_id'];
-    // $contentId =     $templateEntryResponse[0]['content_id'];
-    // $startDate =     $templateEntryResponse[0]['start_date'];
-    // $endDate =       $templateEntryResponse[0]['end_date'];
-    // $createDate =    $templateEntryResponse[0]['create_date'];
-    // $updateDate =    $templateEntryResponse[0]['update_date'];
-    //
-    // $data['entry_id'] = $entryId;
+    // $templateEntryResponse = $invoice->getActiveTemplateEntries();
+    // var_dump($templateEntryResponse);
 
-    $bindInvoiceResponse = Response::fromJson(
-        $invoice->bindToTemplateEntry($data)
-    );
-    print_r($bindInvoiceResponse);
+    // Bind the invoice to a specific template
+    $bindInvoiceResponse = $invoice->bindToTemplateEntry($data);
+
+    var_dump($bindInvoiceResponse);
 
     $bindingId =        $bindInvoiceResponse['binding_id'];
     $entryId =          $bindInvoiceResponse['entry_id'];
@@ -68,6 +56,5 @@ try {
     $createDate =       $bindInvoiceResponse['create_date'];
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }

@@ -27,7 +27,6 @@ require_once "../../vendor/autoload.php";
 
 use Payer\Sdk\Client;
 use Payer\Sdk\Resource\Invoice;
-use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
     'invoice_number' => '' // Enter the invoice number to fetch
@@ -37,14 +36,15 @@ try {
     $gateway = Client::create($credentials);
 
     $invoice = new Invoice($gateway);
-    $activateInvoiceResponse = Response::fromJson(
-        $invoice->activate($data)
-    );
+
+    // Confirm the invoice and make it ready for distribution
+    $activateInvoiceResponse = $invoice->activate($data);
+
+    var_dump($activateInvoiceResponse);
 
     $invoiceNumber = $activateInvoiceResponse['invoice_number'];
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 

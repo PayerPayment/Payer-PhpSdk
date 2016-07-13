@@ -52,14 +52,12 @@ try {
     $gateway = Client::create($credentials);
 
     $purchase = new Purchase($gateway);
-    $recurringPaymentResponse = Response::fromJson(
-        $purchase->debit($data)
-    );
-    print_r($recurringPaymentResponse);
+    $recurringPaymentResponse = $purchase->debit($data);
+
+    var_dump($recurringPaymentResponse);
 
     $transactionId = $recurringPaymentResponse['transaction_id'];
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }

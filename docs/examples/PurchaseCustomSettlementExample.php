@@ -89,8 +89,7 @@ try {
     $purchase->acceptCallbackRequest(); // Signaling 'TRUE'
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 
 

@@ -185,10 +185,8 @@ class Purchase extends PayerResource
         );
         $soap->close();
 
-        return Response::fromArray(
-            array(
-                'transaction_id' => $transactionId
-            )
+        return array(
+            'transaction_id' => $transactionId
         );
     }
 

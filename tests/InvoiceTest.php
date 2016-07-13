@@ -47,10 +47,9 @@ class InvoiceTest extends PayerTestCase {
 
         $createInvoiceResponse = $this->stub->createDummyInvoice();
 
-        $activateInvoiceResponse = Response::fromJson(
-            $this->stub->invoice->activate($createInvoiceResponse)
-        );
-        print_r($activateInvoiceResponse);
+        $activateInvoiceResponse = $this->stub->invoice->activate($createInvoiceResponse);
+
+        var_dump($activateInvoiceResponse);
 
         $this->assertTrue($activateInvoiceResponse['invoice_number'] > 0);
     }
@@ -67,10 +66,9 @@ class InvoiceTest extends PayerTestCase {
 
         $createInvoiceResponse = $this->stub->createDummyInvoice();
 
-        $getInvoiceStatusResponse = Response::fromJson(
-            $this->stub->invoice->getStatus($createInvoiceResponse)
-        );
-        print_r($getInvoiceStatusResponse);
+        $getInvoiceStatusResponse = $this->stub->invoice->getStatus($createInvoiceResponse);
+
+        var_dump($getInvoiceStatusResponse);
 
         $this->assertTrue(!empty($getInvoiceStatusResponse));
     }
@@ -85,10 +83,9 @@ class InvoiceTest extends PayerTestCase {
     {
         print "testInvoiceTemplateEntryBinding()\n";
 
-        $activeTemplateEntriesResponse = Response::fromJson(
-            $this->stub->invoice->getActiveTemplateEntries()
-        );
-        print_r($activeTemplateEntriesResponse);
+        $activeTemplateEntriesResponse = $this->stub->invoice->getActiveTemplateEntries();
+
+        var_dump($activeTemplateEntriesResponse);
 
         $this->assertNotEmpty(
             $activeTemplateEntriesResponse,
@@ -101,10 +98,9 @@ class InvoiceTest extends PayerTestCase {
             'invoice_number' => $createInvoiceResponse['invoice_number'],
             'entry_id'       => $activeTemplateEntriesResponse[0]['entry_id']
         );
-        $bindingResponse = Response::fromJson(
-            $this->stub->invoice->bindToTemplateEntry($bindingData)
-        );
-        print_r($bindingResponse);
+        $bindingResponse = $this->stub->invoice->bindToTemplateEntry($bindingData);
+
+        var_dump($bindingResponse);
 
         $this->assertTrue(
             !empty($bindingResponse['binding_id']) &&
@@ -128,10 +124,9 @@ class InvoiceTest extends PayerTestCase {
         $invoiceStatusData = array(
             'invoice_number' => $createActiveInvoiceResponse['invoice_number']
         );
-        $invoiceStatusResponse = Response::fromJson(
-            $this->stub->invoice->getStatus($invoiceStatusData)
-        );
-        print_r($invoiceStatusResponse);
+        $invoiceStatusResponse = $this->stub->invoice->getStatus($invoiceStatusData);
+
+        var_dump($invoiceStatusResponse);
 
         $refundData = array(
             'transaction_id'    => $invoiceStatusResponse['transaction_id'],
@@ -139,10 +134,9 @@ class InvoiceTest extends PayerTestCase {
             'amount'            => $invoiceStatusResponse['total_amount'],
             'vat_percentage'    => 25
         );
-        $refundInvoiceResponse = Response::fromJson(
-            $this->stub->invoice->refund($refundData)
-        );
-        print_r($refundInvoiceResponse);
+        $refundInvoiceResponse = $this->stub->invoice->refund($refundData);
+
+        var_dump($refundInvoiceResponse);
 
         $this->assertTrue($refundInvoiceResponse['transaction_id'] > 0);
     }
@@ -166,10 +160,9 @@ class InvoiceTest extends PayerTestCase {
             )
         );
 
-        $sendInvoiceResponse = Response::fromJson(
-            $this->stub->invoice->send($sendInvoiceData)
-        );
-        print_r($sendInvoiceResponse);
+        $sendInvoiceResponse = $this->stub->invoice->send($sendInvoiceData);
+
+        var_dump($sendInvoiceResponse);
 
         $this->assertTrue(!empty($sendInvoiceResponse));
     }

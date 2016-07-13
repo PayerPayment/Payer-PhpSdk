@@ -113,7 +113,6 @@ try {
     $purchase->create($data);
 
 } catch (PayerException $e) {
-    print_r($e);
-    die;
+    var_dump($e);
 }
 

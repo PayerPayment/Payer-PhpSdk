@@ -93,10 +93,8 @@ class Order extends PayerResource
         );
         $soap->close();
 
-        return Response::fromArray(
-            array(
-                'order_id' => $orderId
-            )
+        return array(
+            'order_id' => $orderId
         );
     }
 
@@ -123,10 +121,8 @@ class Order extends PayerResource
         $invoiceNumber = $soap->commitOrder($orderId);
         $soap->close();
 
-        return Response::fromArray(
-            array(
-                'invoice_number' => $invoiceNumber
-            )
+        return array(
+            'invoice_number' => $invoiceNumber
         );
     }
 
@@ -154,26 +150,24 @@ class Order extends PayerResource
         $orderStatus = (array) $soap->orderStatus($orderId);
         $soap->close();
 
-        return Response::fromArray(
-            array(
-                'create_date'       => $orderStatus['OrderCreateDate'],
-                'order_id'          => $orderStatus['OrderId'],
-                'status'            => $orderStatus['Status'],
-                'order_number'      => $orderStatus['OrderNumber'],
-                'order_total'       => $orderStatus['OrderTotal'],
-                'delivered_total'   => $orderStatus['DeliveredTotal'],
-                'delivered_vat'     => $orderStatus['DeliveredVat'],
-                'options'           => $orderStatus['Options'],
-                'customer' => array(
-                    'user_id'               => $orderStatus['UserId'],
-                    'merchant_customer_id'  => $orderStatus['MerchantCustomerId']
-                ),
-                'invoice' => array(
-                    'invoice_number'        => $orderStatus['InvoiceNumber'],
-                    'create_date'   => $orderStatus['InvoiceCreateDate'],
-                    'invoice_date'  => $orderStatus['InvoiceDate'],
-                    'due_date'      => $orderStatus['InvoiceDueDate']
-                )
+        return array(
+            'create_date'       => $orderStatus['OrderCreateDate'],
+            'order_id'          => $orderStatus['OrderId'],
+            'status'            => $orderStatus['Status'],
+            'order_number'      => $orderStatus['OrderNumber'],
+            'order_total'       => $orderStatus['OrderTotal'],
+            'delivered_total'   => $orderStatus['DeliveredTotal'],
+            'delivered_vat'     => $orderStatus['DeliveredVat'],
+            'options'           => $orderStatus['Options'],
+            'customer' => array(
+                'user_id'               => $orderStatus['UserId'],
+                'merchant_customer_id'  => $orderStatus['MerchantCustomerId']
+            ),
+            'invoice' => array(
+                'invoice_number'        => $orderStatus['InvoiceNumber'],
+                'create_date'   => $orderStatus['InvoiceCreateDate'],
+                'invoice_date'  => $orderStatus['InvoiceDate'],
+                'due_date'      => $orderStatus['InvoiceDueDate']
             )
         );
     }
