@@ -191,6 +191,55 @@ class Purchase extends PayerResource
     }
 
     /**
+     * Refunds an invoice with the defined amount
+     *
+     * @param array $input The refund request object
+     * @return string The transaction id of the refund
+     * @throws InvalidRequestException
+     * @throws WebserviceException
+     *
+     */
+    public function refund(array $input)
+    {
+        $input = $this->_formatter->filterRefund($input);
+
+        $transactionId = $input['transaction_id'];
+        if (empty($transactionId)) {
+            throw new InvalidRequestException("Missing argument: 'transaction_id'");
+        }
+
+        $reason = $input['reason'];
+        if (empty($reason)) {
+            throw new InvalidRequestException("Missing argument: 'reason'");
+        }
+
+        $amount = $input['amount'];
+        if (empty($amount)) {
+            throw new InvalidRequestException("Missing argument: 'amount'");
+        }
+
+        $vat_percentage = $input['vat_percentage'];
+        if (empty($vat_percentage)) {
+            throw new InvalidRequestException("Missing argument: 'var_percentage'");
+        }
+
+        $soap = $this->gateway->getSoapService();
+
+        $soap->start();
+        $refundId = $soap->simpleRefund(
+            $transactionId,
+            $reason,
+            $amount,
+            $vat_percentage
+        );
+        $soap->close();
+
+        return array(
+            'transaction_id' => $refundId
+        );
+    }
+
+    /**
      * Carries the validation of the callback request source
      *
      * @param array $input Voluntary  options

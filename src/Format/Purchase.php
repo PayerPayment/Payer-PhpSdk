@@ -28,6 +28,21 @@ class Purchase extends DataFormatter
 {
 
     /**
+     * Handles the default 'Callback Request' object format
+     *
+     * @param array $callbackRequest The callback request object to be filtered
+     * @return array The filtered callback object
+     *
+     */
+    public function filterCallbackRequest(array $callbackRequest) {
+        if (!array_key_exists("proxy", $callbackRequest)) {
+            $callbackRequest['proxy'] = array();
+        }
+
+        return $callbackRequest;
+    }
+
+    /**
      * Handles the default 'Debit' object format
      *
      * @param array $debit The debit request object to be filtered
@@ -133,18 +148,31 @@ class Purchase extends DataFormatter
     }
 
     /**
-     * Handles the default 'Callback Request' object format
+     * Handles the default 'Invoice Refund' object format
      *
-     * @param array $callbackRequest The callback request object to be filtered
-     * @return array The filtered callback object
+     * @param array $refund The refund request object to be filtered
+     * @return array The filtered refund object
      *
      */
-    public function filterCallbackRequest(array $callbackRequest) {
-        if (!array_key_exists("proxy", $callbackRequest)) {
-            $callbackRequest['proxy'] = array();
+    public function filterRefund(array $refund)
+    {
+        if (!array_key_exists("transaction_id", $refund)) {
+            $refund['transaction_id'] = '';
         }
 
-        return $callbackRequest;
+        if (!array_key_exists("reason", $refund)) {
+            $refund['reason'] = '';
+        }
+
+        if (!array_key_exists("amount", $refund)) {
+            $refund['amount'] = '';
+        }
+
+        if (!array_key_exists("vat_percentage", $refund)) {
+            $refund['vat_percentage'] = '';
+        }
+
+        return $refund;
     }
 
 }

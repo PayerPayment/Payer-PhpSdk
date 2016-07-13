@@ -97,34 +97,6 @@ class Invoice extends DataFormatter
     }
 
     /**
-     * Handles the default 'Invoice Refund' object format
-     *
-     * @param array $refund The refund request object to be filtered
-     * @return array The filtered refund object
-     *
-     */
-    public function filterRefund(array $refund)
-    {
-        if (!array_key_exists("transaction_id", $refund)) {
-            $refund['transaction_id'] = '';
-        }
-
-        if (!array_key_exists("reason", $refund)) {
-            $refund['reason'] = '';
-        }
-
-        if (!array_key_exists("amount", $refund)) {
-            $refund['amount'] = '';
-        }
-
-        if (!array_key_exists("vat_percentage", $refund)) {
-            $refund['vat_percentage'] = '';
-        }
-
-        return $refund;
-    }
-
-    /**
      * Handles the default 'Send Invoice' object format
      *
      * @param array $sendInvoice The send invoice request object to be filtered

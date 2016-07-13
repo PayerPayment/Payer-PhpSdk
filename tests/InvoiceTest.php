@@ -134,7 +134,7 @@ class InvoiceTest extends PayerTestCase {
             'amount'            => $invoiceStatusResponse['total_amount'],
             'vat_percentage'    => 25
         );
-        $refundInvoiceResponse = $this->stub->invoice->refund($refundData);
+        $refundInvoiceResponse = $this->stub->purchase->refund($refundData);
 
         var_dump($refundInvoiceResponse);
 

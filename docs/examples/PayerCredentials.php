@@ -22,24 +22,21 @@
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache license v2.0
  */
 /**
- * PAYER CONFIGURATION
+ * Setup your Payer Configuration here to be able to access the webservices.
  *
- * To be able to run the examples you have to setup your Payer Credentials
- * for the webservice you're gonna use.
- **
  * For further questions about your configuration, please contact
  * the Payer Customer service at kundtjanst@payer.se
  *
  */
 $credentials = array(
 
-    //'agent_id' => '',
+    // 'agent_id' => '',
 
     // Required by Purchase, GetAddress, Challenge
-    //'post' => array(
-    //    'key_1'             => '',
-    //    'key_2'             => ''
-    //),
+    // 'post' => array(
+    //     'key_1'             => '',
+    //     'key_2'             => ''
+    // ),
 
     // Required by Invoice, Order
     //'soap'  => array(

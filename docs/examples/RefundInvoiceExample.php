@@ -27,8 +27,8 @@ require_once "../../vendor/autoload.php";
 
 use Payer\Sdk\Client;
 use Payer\Sdk\Resource\Invoice;
+use Payer\Sdk\Resource\Purchase;
 
-use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
     'invoice_number'    => '', // Enter the number of the invoice to refund
@@ -53,7 +53,8 @@ try {
     // has to be refunded as a single call.
     $data['vat_percentage'] =   25;
 
-    $refundInvoiceResponse = $invoice->refund($data);
+    $purchase = new Purchase($gateway);
+    $refundInvoiceResponse = $purchase->refund($data);
 
     var_dump($refundInvoiceResponse);
 
