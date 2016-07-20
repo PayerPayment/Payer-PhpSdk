@@ -58,17 +58,21 @@ class PayerTestCase extends \PHPUnit_Framework_TestCase {
     protected function setUp()
     {
         $this->credentials = array(
-            //'agent_id' => '',
 
-            //'post' => array(
-            //    'key_1'             => '',
-            //    'key_2'             => ''
-            //),
+            # 'agent_id' => '',
 
-            //'soap'  => array(
-            //    'username' => '',
-            //    'password' => ''
-            //)
+            // Required by Purchase, GetAddress, Challenge
+            # 'post' => array(
+            #    'key_1'             => '',
+            #    'key_2'             => ''
+            # ),
+
+            // Required by Invoice, Order
+            # 'soap'  => array(
+            #    'username' => '',
+            #    'password' => ''
+            # )
+
         );
 
         $this->gateway = Client::create($this->credentials);

@@ -45,16 +45,6 @@ class Challenge extends PayerResource
         $this->gateway = $gateway;
     }
 
-    public function ping()
-    {
-        $rest = $this->gateway->getRestService();
-        $response =  Response::fromJson($rest->ping());
-
-        return array(
-            'status' => $response['status']
-        );
-    }
-
     /**
      * Fetches the Challenge hash object
      *
@@ -81,8 +71,6 @@ class Challenge extends PayerResource
         $hash = Encryptor::makeMd5Hash($credentials['key_1'], $challenge);
 
         return array(
-            'id'                => $obj['auth']['id'],
-            'agent_id'          => $obj['auth']['website'],
             'challenge_token'   => $hash,
             'status'            => $obj['auth']['status']
         );

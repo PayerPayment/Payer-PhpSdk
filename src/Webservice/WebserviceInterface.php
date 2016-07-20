@@ -34,9 +34,24 @@ abstract class WebserviceInterface
     protected $credentials;
 
     /**
+     * Payer Domain
+     *
+     * @var string
+     */
+    protected $domain;
+
+    /**
+     * Payer Webservice Location
+     *
+     * @var string
+     */
+    protected $relativePath;
+
+
+    /**
      * Returns the Webservice Credentials
      *
-     * @return mixed
+     * @return array
      *
      */
     public function getCredentials()
@@ -53,6 +68,50 @@ abstract class WebserviceInterface
     public function setCredentials($credentials)
     {
         $this->credentials = $credentials;
+    }
+
+    /**
+     * Returns the current Payer Domain
+     *
+     * @return string
+     *
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+
+    /**
+     * Sets the current Payer Domain
+     *
+     * @param $domain
+     *
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+    }
+
+    /**
+     * Returns the resource location
+     *
+     * @return string
+     *
+     */
+    public function getRelativePath()
+    {
+        return $this->relativePath;
+    }
+
+    /**
+     * Sets the resource location
+     *
+     * @param $relativePath
+     *
+     */
+    public function setRelativePath($relativePath)
+    {
+        $this->relativePath = $relativePath;
     }
 
     /**

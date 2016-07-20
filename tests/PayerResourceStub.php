@@ -195,23 +195,21 @@ class PayerResourceStub
     {
         $this->orderData = array(
 
-            'charset'       => 'UTF-8',
+            # 'charset'       => 'ISO-8859-1',
+            # 'currency'      => 'SEK',
             'description'   => 'Payer Sdk Test ' . date('Y-m-d H:i:s'),
-            'reference_id'  => base64_encode(rand()),
+            'order_number'  => base64_encode(rand()),
             'test_mode'     => true,
 
             'customer' => array(
                 'identity_number' => '556736-8724',
+                'organisation' => 'Payer Financial Services AB',
                 'first_name'    => 'Test',
                 'last_name'     => 'Person',
-                'organisation' => array(
-                    'name'      => 'Payer Financial Services AB',
-                    //'reference' => 'Test person'
-                ),
                 'address'       => array(
-                    'co'            => '',
+                    # 'co'            => '',
                     'address_1'     => 'Testvägen 123',
-                    'address_2'     => ''
+                    # 'address_2'     => ''
                 ),
                 'zip_code'      => 12345,
                 'city'          => 'Teststaden',
@@ -225,9 +223,9 @@ class PayerResourceStub
             ),
 
             'options' => array(
-                //'delivery_type' => '',
-                //'template_type' => 2,
-                //'style'         => ''
+                # 'delivery_type' => '',
+                # 'template_type' => 2,
+                # 'style'         => ''
             ),
 
             'items' => array(
@@ -240,17 +238,17 @@ class PayerResourceStub
                     'unit_vat_percentage'   => 20,
                     'quantity'              => 10,
                     'unit'                  => null,
-                    //'account'               => null,
-                    //'dist_agent_id'         => null
+                    # 'account'               => null,
+                    # 'dist_agent_id'         => null
                 ),
                 array(
                     'type'                  => 'infoline',
                     'line_number'           => 2,
                     'article_number'        => 'ABC123',
                     'description'           => "This is an infoline description",
-                    'unit'                  => null,
-                    //'account'               => null,
-                    //'dist_agent_id'         => null
+                    # 'unit'                  => null,
+                    # 'account'               => null,
+                    # 'dist_agent_id'         => null
                 )
             )
 
@@ -258,7 +256,6 @@ class PayerResourceStub
 
         $this->purchaseData = array(
             'payment' => array(
-                'currency'  => 'SEK',
                 'language'  => 'sv',
                 'method'    => 'card',
                 'url' => array(
@@ -268,7 +265,7 @@ class PayerResourceStub
                     'success'   => 'http://example.com'
                 )
             ),
-            'order' => $this->orderData
+            'purchase' => $this->orderData
         );
 
     }

@@ -42,6 +42,10 @@ class Order extends DataFormatter
             $customer['identity_number'] = '';
         }
 
+        if (!array_key_exists("organisation", $customer)) {
+            $customer['organisation'] = '';
+        }
+
         if (!array_key_exists("first_name", $customer)) {
             $customer['first_name'] = '';
         }
@@ -78,10 +82,6 @@ class Order extends DataFormatter
             $customer['country_code'] = '';
         }
 
-        if (!array_key_exists("options", $customer)) {
-            $customer['options'] = '';
-        }
-
         if (!array_key_exists("email", $customer)) {
             $customer['email'] = '';
         }
@@ -100,22 +100,6 @@ class Order extends DataFormatter
 
         if (!array_key_exists("mobile", $customer['phone'])) {
             $customer['phone']['mobile'] = '';
-        }
-
-        if (!array_key_exists("organisation", $customer)) {
-            $customer['organisation'] = array();
-        }
-
-        if (!array_key_exists("name", $customer['organisation'])) {
-            $customer['organisation']['name'] = '';
-        }
-
-        if (!array_key_exists("number", $customer['organisation'])) {
-            $customer['organisation']['number'] = '';
-        }
-
-        if (!array_key_exists("reference", $customer['organisation'])) {
-            $customer['organisation']['reference'] = '';
         }
 
         return $customer;
@@ -239,10 +223,6 @@ class Order extends DataFormatter
 
         if (!array_key_exists("test_mode", $order)) {
             $order['test_mode'] = false;
-        }
-
-        if (!array_key_exists("reference_id", $order)) {
-            $order['reference_id'] = '';
         }
 
         $order['customer'] = $this->filterCustomerDetails($order['customer']);

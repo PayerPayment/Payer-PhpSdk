@@ -30,12 +30,11 @@ use Payer\Sdk\Resource\Purchase;
 
 $data = array(
     'payment' => array(
-        'currency'  => 'SEK',
         'language'  => 'sv',
         'method'    => 'card',  // Examples: card, invoice, bank, installment, swish
         'url' => array(
-            'authorize' => 'http://example.com/PurchaseAuthorizationExample.php',   // NOTICE: See the example about how to create an Authorization resource
-            'settle'    => 'http://example.com/PurchaseSettlementExample.php',      // NOTICE: See the example about how to create a Settlement resource
+            'authorize' => 'http://example.com/PurchaseAuthorizeExample.php', // The url to the Authorize Callback Resource
+            'settle'    => 'http://example.com/PurchaseSettlementExample.php', // The url to the Settlement Callback Resource
             'redirect'  => 'http://example.com',
             'success'   => 'http://example.com'
         ),
@@ -43,13 +42,15 @@ $data = array(
             // 'store' => true
         )
     ),
-    'order' => array(
+    'purchase' => array(
         'charset'       => 'UTF-8',
+        'currency'  => 'SEK',
         'description'   => 'This is an order description',
         'reference_id'  => base64_encode(rand()),
         'test_mode'     => true,
         'customer' => array(
             'identity_number'   => '',
+            'organisation'  => 'Test Company',
             'first_name'        => '',
             'last_name'         => '',
             'address' => array(
@@ -65,12 +66,7 @@ $data = array(
                 'work'      => '0987654321',
                 'mobile'    => '111222333444'
             ),
-            'email' => 'demo@payer.se',
-            'organisation'  => array(
-                'name'      => 'Test Company',
-                'number'    => 1234567890,
-                'reference' => 'Test person'
-            )
+            'email' => 'demo@payer.se'
         ),
         'items' => array(
             array(

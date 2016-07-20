@@ -68,16 +68,16 @@ class Purchase extends PayerResource
      */
     public function create(array $input)
     {
-        $input = $this->_formatter->filterPurchase($input);
+        $input = $this->_formatter->filterCreatePurchase($input);
 
-        $order = $input['order'];
         $payment = $input['payment'];
+        $purchase = $input['purchase'];
 
         $post = $this->gateway->getPostService();
 
-        $this->_setOrderDetails($post, $order);
-        $this->_setOrderItems($post, $order['items']);
-        $this->_setCustomerDetails($post, $order['customer']);
+        $this->_setOrderDetails($post, $purchase);
+        $this->_setOrderItems($post, $purchase['items']);
+        $this->_setCustomerDetails($post, $purchase['customer']);
         $this->_setPaymentOptions($post, $payment);
 
         ob_start();
@@ -149,8 +149,8 @@ class Purchase extends PayerResource
     {
         $input = $this->_formatter->filterDebit($input);
 
-        $debitToken = $input['recurring_token'];
-        if (empty($debitToken)) {
+        $recurringToken = $input['recurring_token'];
+        if (empty($recurringToken)) {
             throw new InvalidRequestException("Missing argument: 'recurring_token'");
         }
 
@@ -169,19 +169,19 @@ class Purchase extends PayerResource
             throw new InvalidRequestException("Missing argument: 'description'");
         }
 
-        $merchantReferenceId = $input['merchant_reference_id'];
+        $referenceId = $input['reference_id'];
         $vatPercentage = $input['vat_percentage'];
 
         $soap = $this->gateway->getSoapService();
 
         $soap->start();
         $transactionId = $soap->debitByReference(
-            $debitToken,
-            $merchantReferenceId,
-            $amount,
+            $recurringToken,
+            $referenceId,
+            double($amount),
             $currency,
             $description,
-            $vatPercentage
+            doubleval($vatPercentage)
         );
         $soap->close();
 
@@ -229,8 +229,8 @@ class Purchase extends PayerResource
         $refundId = $soap->simpleRefund(
             $transactionId,
             $reason,
-            $amount,
-            $vat_percentage
+            doubleval($amount),
+            intval($vat_percentage)
         );
         $soap->close();
 
@@ -291,11 +291,10 @@ class Purchase extends PayerResource
             $customer['phone']['work'],
             $customer['phone']['mobile'],
             $customer['email'],
-            $customer['organisation']['name'],
-            (!empty($customer['organisation']['number']) ? $customer['organisation']['number'] : $customer['identity_number']),
+            $customer['organisation'],
+            $customer['identity_number'],
             $customer['id'],
-            $customer['organisation']['reference'],
-            $customer['options']
+            $customer['first_name'] . ' ' . $customer['last_name']
         );
     }
 
@@ -359,7 +358,7 @@ class Purchase extends PayerResource
             $post->setCharSet($order['charset']);
         }
 
-        if (empty($order['currency'])) {
+        if (!empty($order['currency'])) {
             $post->set_currency($order['currency']);
         }
 

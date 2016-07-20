@@ -12,12 +12,14 @@ For more information about our payment services, please visit [www.payer.se](htt
   * [PHP](http://php.org): Version 5.X
   * [Curl](https://curl.haxx.se/): Version 7.10.X
   * [Composer](https://getcomposer.org)
-  * [Payer Credentials](https://payer.se): Missing credentials? [Contact us](mailto:teknik@payer.se)
+  * [Payer Credentials](http://payer.se): Missing credentials? [Contact us](mailto:teknik@payer.se)
 
 ## Quickstart
 
   * Run `composer require payer/sdk` to install the package
   * See the examples in `docs/examples` for further usage
+
+For a full description about how to get started, download the extended [SDK Documentation](http://payer.se/external/PAYER_PHP_SDK_DOCUMENTATION.pdf) from [here](http://payer.se/external/PAYER_PHP_SDK_DOCUMENTATION.pdf).
 
 ## Running Test Cases
 

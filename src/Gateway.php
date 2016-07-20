@@ -94,10 +94,6 @@ class Gateway extends PayerGatewayInterface {
 		if (array_key_exists("domain", $options)) {
 			$this->domain = $options['domain'];
 		}
-
-		if (array_key_exists("wsdl", $options)) {
-			$this->wsdl = $options['wsdl'];
-		}
 	}
 
 	/**
@@ -138,7 +134,7 @@ class Gateway extends PayerGatewayInterface {
 		if (!empty($credentials['soap'])) {
 			$credentials['soap']['agent_id'] = $credentials['agent_id'];
 			$this->_setSoapService(
-				new SoapService($this->getWsdl(), $credentials['soap'])
+				new SoapService($this->getDomain(), $credentials['soap'])
 			);
 
 		}

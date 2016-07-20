@@ -31,26 +31,12 @@ class RestService extends WebserviceInterface implements PayerRestInterface
 {
 
 	/**
-	 * Payer Resource Domain
-	 *
-	 * @var string
-	 */
-	protected $domain;
-
-	/**
 	 * HTTP Transport Handler
 	 *
 	 * @var HttpTransportInterface
 	 *
 	 */
 	protected $http;
-
-	/**
-	 * Payer REST API Location
-	 *
-	 * @var string
-	 */
-	protected $relativePath = '/api';
 
 	/**
 	 * Instantiate the Payer Rest Interface
@@ -66,7 +52,9 @@ class RestService extends WebserviceInterface implements PayerRestInterface
 		array $credentials
 	) {
 		$this->http = $http;
+
 		$this->domain = $domain;
+		$this->relativePath = '/api';
 
 		// Checks if the credentials are valid
 		if (!$this->validateCredentials($credentials))

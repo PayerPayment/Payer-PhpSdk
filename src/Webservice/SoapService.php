@@ -60,24 +60,24 @@ class SoapService extends WebserviceInterface implements PayerSoapInterface
 	/**
 	 * Instantiate the Payer Soap Interface
 	 *
-	 * @param null|string $wsdl Payer Soap Wsdl
+	 * @param null|string $domain Payer Domain
 	 * @param array $credentials
 	 * @throws RuntimeException
 	 * @throws ValidationException
 	 * @throws InvalidRequestException
 	 */
 	public function __construct(
-		$wsdl = null,
+		$domain,
 		array $credentials
 	) {
 		if (!extension_loaded('soap')) {
 			throw new RuntimeException('Payer Soap Service requires an installed soap extension');
 		}
 
-		if (empty($wsdl)) {
-			throw new InvalidRequestException("WSDL not set (required for Soap requests)");
-		}
-		$this->wsdl = $wsdl;
+		$this->domain = $domain;
+		$this->relativePath = '/services/PublicPayerCore?wsdl';
+
+		$this->wsdl = $this->getDomain() . $this->getRelativePath();
 
 		// Instantiates the Soap client
 		$this->soap = new SoapClient($this->wsdl, array());

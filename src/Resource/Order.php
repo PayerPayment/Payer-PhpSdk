@@ -77,6 +77,7 @@ class Order extends PayerResource
             throw new InvalidRequestException("Missing argument: 'items'");
         }
 
+        print_r($order);
         $options = $order['options'];
 
         $orderDetails = $this->_handleOrderDetailsFormat($order);
@@ -151,23 +152,23 @@ class Order extends PayerResource
         $soap->close();
 
         return array(
+            'status'            => $orderStatus['Status'],
             'create_date'       => $orderStatus['OrderCreateDate'],
             'order_id'          => $orderStatus['OrderId'],
-            'status'            => $orderStatus['Status'],
             'order_number'      => $orderStatus['OrderNumber'],
             'order_total'       => $orderStatus['OrderTotal'],
             'delivered_total'   => $orderStatus['DeliveredTotal'],
             'delivered_vat'     => $orderStatus['DeliveredVat'],
             'options'           => $orderStatus['Options'],
             'customer' => array(
-                'user_id'               => $orderStatus['UserId'],
-                'merchant_customer_id'  => $orderStatus['MerchantCustomerId']
+                'id'   => $orderStatus['MerchantCustomerId'],
+                'user_id'       => $orderStatus['UserId']
             ),
             'invoice' => array(
-                'invoice_number'        => $orderStatus['InvoiceNumber'],
-                'create_date'   => $orderStatus['InvoiceCreateDate'],
-                'invoice_date'  => $orderStatus['InvoiceDate'],
-                'due_date'      => $orderStatus['InvoiceDueDate']
+                'invoice_number'    => $orderStatus['InvoiceNumber'],
+                'create_date'       => $orderStatus['InvoiceCreateDate'],
+                'invoice_date'      => $orderStatus['InvoiceDate'],
+                'due_date'          => $orderStatus['InvoiceDueDate']
             )
         );
     }
@@ -191,9 +192,9 @@ class Order extends PayerResource
             'Currency'      => $order['currency'],
 
             'CustomerId'    => $customer['id'],
-            'Company'       => $customer['organisation']['name'],
-            'YourReference' => $customer['organisation']['reference'],
-            'PersonalId'    => (!empty($customer['organisation']['number']) ? $customer['organisation']['number'] : $customer['identity_number']),
+            'Company'       => $customer['organisation'],
+            'YourReference' => $customer['first_name'] . ' ' . $customer['last_name'],
+            'PersonalId'    => $customer['identity_number'],
             'FirstName'     => $customer['first_name'],
             'LastName'      => $customer['last_name'],
             'invoiceAddress' => array(

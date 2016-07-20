@@ -41,6 +41,10 @@ class Invoice extends DataFormatter
             $activation['options'] = array();
         }
 
+        if (!array_key_exists("delivery_type", $activation)) {
+            $activation['options']['delivery_type'] = '';
+        }
+
         return $activation;
     }
 
@@ -117,8 +121,8 @@ class Invoice extends DataFormatter
             $sendInvoice['options']['delivery_type'] = '';
         }
 
-        if (!array_key_exists("campaign_id", $sendInvoice['options'])) {
-            $sendInvoice['options']['campaign_id'] = '';
+        if (!array_key_exists("template_entry_id", $sendInvoice['options'])) {
+            $sendInvoice['options']['template_entry_id'] = '';
         }
 
         return $sendInvoice;

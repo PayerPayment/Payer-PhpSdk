@@ -34,7 +34,7 @@ $data = array(
     'amount'                =>  25.00,
     'currency'              =>  'SEK',
     'description'           =>  'Payer Sdk Recurring Example',
-    #'merchant_reference_id' =>  '',
+    #'reference_id' =>  '',
     #'vat_percentage'        =>  25
 );
 

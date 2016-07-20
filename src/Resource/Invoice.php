@@ -104,9 +104,9 @@ class Invoice extends PayerResource
             throw new InvalidRequestException("Missing argument: 'invoice_number'");
         }
 
-        $entryId = $input['entry_id'];
+        $entryId = $input['template_entry_id'];
         if (empty($entryId)) {
-            throw new InvalidRequestException("Missing argument: 'entry_id'");
+            throw new InvalidRequestException("Missing argument: 'template_entry_id'");
         }
 
         $soap = $this->gateway->getSoapService();
@@ -119,10 +119,8 @@ class Invoice extends PayerResource
         $soap->close();
 
         return array(
-            'binding_id'        => $binding['Id'],
-            'entry_id'          => $binding['EntryId'],
-            'create_date'       => $binding['CreateDate'],
-            'invoice_number'    => $binding['InvoiceNumber']
+            'template_entry_binding_id' => $binding['Id'],
+            'create_date'               => $binding['CreateDate']
         );
     }
 
@@ -150,20 +148,25 @@ class Invoice extends PayerResource
         $invoiceStatus = (array) $soap->invoiceStatus($invoiceNumber);
         $soap->close();
 
+        $invoiceEvents = array();
+        if (array_key_exists("eventHistory", $invoiceStatus)) {
+        $invoiceEvents = $this->_handleInvoiceStatusEvent($invoiceStatus['eventHistory']);
+        }
+
         return array(
-            'invoice_number'    => $invoiceStatus['InvoiceNumber'],
             'order_number'      => $invoiceStatus['OrderNumber'],
-            'transaction_id'    => $invoiceStatus['ChargeLogId'],
+            'transaction_id'    => intval($invoiceStatus['ChargeLogId']),
             'customer' => array(
-                'user_id'               => $invoiceStatus['UserId'],
-                'merchant_customer_id'  => $invoiceStatus['MerchantCustomerId']
+                'id'            => $invoiceStatus['MerchantCustomerId'],
+                'user_id'       => $invoiceStatus['UserId']
             ),
-            'total_amount'      => $invoiceStatus['InvoiceAmount'],
-            'rounding_amount'   => $invoiceStatus['RoundingAmount'],
-            'to_pay_amount'     => $invoiceStatus['ToPayAmount'],
+            'total_amount'      => doubleval($invoiceStatus['InvoiceAmount']),
+            'rounding_amount'   => doubleval($invoiceStatus['RoundingAmount']),
+            'to_pay_amount'     => doubleval($invoiceStatus['ToPayAmount']),
             'invoice_date'      => $invoiceStatus['InvoiceDate'],
             'due_date'          => $invoiceStatus['DueDate'],
             'paid_date'         => $invoiceStatus['PaidDate'],
+            'events'            => $invoiceEvents,
             'options'           => $invoiceStatus['Options'],
             'delivery_type'     => $invoiceStatus['DeliveryType']
         );
@@ -184,7 +187,9 @@ class Invoice extends PayerResource
         $templateEntries = (array) $soap->getActiveInvoiceTemplateEntries();
         $soap->close();
 
-        return $this->_handleTemplateEntryFormat($templateEntries);
+        return array(
+            'template_entries' => $this->_handleTemplateEntryFormat($templateEntries)
+        );
     }
 
     /**
@@ -243,12 +248,35 @@ class Invoice extends PayerResource
             if (!empty($options['delivery_type'])) {
                 $orderOptions .= (empty($orderOptions) ? '' : ',') . 'deliverytype=' . $options['delivery_type'];
             }
-            if (!empty($options['campaign_id'])) {
-                $orderOptions .= (empty($orderOptions) ? '' : ',') . 'campaignid=' . $options['campaign_id'];
+            if (!empty($options['template_entry_id'])) {
+                $orderOptions .= (empty($orderOptions) ? '' : ',') . 'campaignid=' . $options['template_entry_id'];
             }
             return $orderOptions;
         }
         return null;
+    }
+
+    /**
+     * Converts the Invoice Status Events array to Payer format
+     *
+     * @param array $events The invoice status events array to be formatted
+     * @return null|string The formatted invoice status events object
+     *
+     */
+    private function _handleInvoiceStatusEvent(array $events)
+    {
+        $formattedEvents = array();
+        foreach ($events as $event) {
+            $event = (array) $event;
+            $formattedEvents = array(
+                'id'            => $event['EventId'],
+                'type'          => $event['EventType'],
+                'create_date'   => $event['EventDate'],
+                'process_date'  => $event['ProcessingDate'],
+                'amount'        => $event['EventAmount']
+            );
+        }
+        return $formattedEvents;
     }
 
     /**
@@ -264,12 +292,11 @@ class Invoice extends PayerResource
         foreach ($templateEntries as $templateEntry) {
             $templateEntry = (array) $templateEntry;
             $formattedTemplateEntries[] = array(
-                'entry_id'      => $templateEntry['Id'],
-                'content_id'    => $templateEntry['EntryContentId'],
-                'start_date'    => $templateEntry['StartDate'],
-                'end_date'      => $templateEntry['EndDate'],
-                'create_date'   => $templateEntry['CreateDate'],
-                'update_date'   => $templateEntry['UpdateDate']
+                'template_entry_id'  => $templateEntry['Id'],
+                'start_date'         => $templateEntry['StartDate'],
+                'end_date'           => $templateEntry['EndDate'],
+                'create_date'        => $templateEntry['CreateDate'],
+                'update_date'        => $templateEntry['UpdateDate']
             );
         }
         return $formattedTemplateEntries;

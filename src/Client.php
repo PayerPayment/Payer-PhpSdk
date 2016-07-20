@@ -31,12 +31,6 @@ class Client {
 	const PAYER_DOMAIN = 'https://secure.payer.se/PostAPI_V1';
 
 	/**
-	 * Payer WSDL Location
-	 *
-	 */
-	const PAYER_WSDL = 'https://secure.payer.se/PostAPI_V1/services/PublicPayerCore?wsdl';
-
-	/**
 	 * This is the main method that initiates the Payer Gateway
 	 * and all available Payment Services.
 	 *
@@ -80,11 +74,7 @@ class Client {
 			$options['domain'] = self::PAYER_DOMAIN;
 		}
 
-		if (empty($options['wsdl'])) {
-			$options['wsdl'] = self::PAYER_WSDL;
-		}
-
 		return new Gateway($credentials, $options);
 	}
- 
+
 }

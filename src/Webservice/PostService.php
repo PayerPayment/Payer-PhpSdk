@@ -27,20 +27,6 @@ use Payer\Sdk\Exception\ValidationException;
 class PostService extends WebserviceInterface implements PayerPostInterface
 {
 
-	/**
-	 * Payer POST API Location
-	 *
-	 * @var string
-	 */
-	private $_relativePath = '/InitPayFlow';
-
-	/**
-	 * Payer Resource Domain
-	 *
-	 * @var string
-	 */
-	public $domain;
-
 	public $myAgentId;
 
 	public $myKeys = array ();
@@ -109,7 +95,9 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 		array $credentials
 	) {
 		$this->domain = $domain;
-		$this->myPayerServerUrl = $this->domain . $this->_relativePath;
+		$this->relativePath = '/InitPayFlow';
+
+		$this->myPayerServerUrl = $this->getDomain() . $this->getRelativePath();
 
 		// Set defaults
 		$this->myPostApiVersion = "payer_php_0_2_v30";
@@ -119,6 +107,8 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 		$this->myDebugMode 		= "silent";
 		$this->myTestMode 		= "false";
 		$this->myCharSet 		= null; // Use database value as default
+
+		$this->setClientVersion("30");
 
 		// Valid callback addresses
 		$this->myFirewall = array (

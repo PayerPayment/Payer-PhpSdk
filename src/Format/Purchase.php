@@ -55,8 +55,8 @@ class Purchase extends DataFormatter
             $debit['recurring_token'] = '';
         }
 
-        if (!array_key_exists("merchant_reference_id", $debit)) {
-            $debit['merchant_reference_id'] = '';
+        if (!array_key_exists("reference_id", $debit)) {
+            $debit['reference_id'] = '';
         }
 
         if (!array_key_exists("amount", $debit)) {
@@ -79,6 +79,21 @@ class Purchase extends DataFormatter
     }
 
     /**
+     * Handles the filtering of the Purchase Creation model
+     *
+     * @param array $create The create request object to be filtered
+     * @return array The filtered crete object
+     *
+     */
+    public function filterCreatePurchase(array $create)
+    {
+        $create['purchase'] = $this->filterPurchase($create['purchase']);
+        $create['payment'] = $this->filterPayment($create['payment']);
+
+        return $create;
+    }
+
+    /**
      * Handles the default 'Purchase' object format
      *
      * @param array $purchase The purchase request object to be filtered
@@ -87,10 +102,46 @@ class Purchase extends DataFormatter
      */
     public function filterPurchase(array $purchase)
     {
-        $orderFormatter = new Order;
+        $formatter = new Order;
 
-        $purchase['order'] = $orderFormatter->filterOrder($purchase['order']);
-        $purchase['payment'] = $this->filterPayment($purchase['payment']);
+        if (!array_key_exists("charset", $purchase)) {
+            $purchase['charset'] = 'ISO-8859-1';
+        }
+
+        if (!array_key_exists("client_ip", $purchase)) {
+            $purchase['client_ip'] = '';
+        }
+
+        if (!array_key_exists("currency", $purchase)) {
+            $purchase['currency'] = 'SEK';
+        }
+
+        if (!array_key_exists("description", $purchase)) {
+            $purchase['description'] = date('Y-m-d H:i:s');
+        }
+
+        if (!array_key_exists("items", $purchase)) {
+            $purchase['items'] = array();
+        }
+        $purchase['items'] = $formatter->filterItems($purchase['items']);
+
+        if (!array_key_exists("options", $purchase)) {
+            $purchase['options'] = array();
+        }
+        $purchase['options'] = $formatter->filterOptions($purchase['options']);
+
+        if (!array_key_exists("order_number", $purchase)) {
+            $purchase['order_number'] = '';
+        }
+
+        if (!array_key_exists("test_mode", $purchase)) {
+            $purchase['test_mode'] = false;
+        }
+
+        if (!array_key_exists("customer", $purchase)) {
+            $purchase['customer'] = array();
+        }
+        $purchase['customer'] = $formatter->filterCustomerDetails($purchase['customer']);
 
         return $purchase;
     }

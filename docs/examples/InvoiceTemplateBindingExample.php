@@ -31,8 +31,8 @@ use Payer\Sdk\Resource\Invoice;
 use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
-    'invoice_number'    => '',  // The invoice number to fetch
-    'entry_id'          => '',  // The id of the Template Entry to use
+    'invoice_number'        => '',  // The invoice number to fetch
+    'template_entry_id'     => '',  // The id of the Template Entry to use
 );
 
 try {
@@ -50,8 +50,8 @@ try {
 
     var_dump($bindInvoiceResponse);
 
-    $bindingId =        $bindInvoiceResponse['binding_id'];
-    $entryId =          $bindInvoiceResponse['entry_id'];
+    $bindingId =        $bindInvoiceResponse['template_entry_binding_id'];
+    $entryId =          $bindInvoiceResponse['template_entry_id'];
     $invoiceNumber =    $bindInvoiceResponse['invoice_number'];
     $createDate =       $bindInvoiceResponse['create_date'];
 

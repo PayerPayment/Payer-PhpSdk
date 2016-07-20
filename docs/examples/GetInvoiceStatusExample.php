@@ -48,8 +48,8 @@ try {
     $orderNumber =      $getInvoiceResponse['order_number'];
     $transactionId =    $getInvoiceResponse['transaction_id'];
 
-    $userId =               $getInvoiceResponse['customer']['user_id'];
-    $merchantCustomerId =   $getInvoiceResponse['customer']['merchant_customer_id'];
+    $customerId =       $getInvoiceResponse['customer']['id'];
+    $userId =           $getInvoiceResponse['customer']['user_id'];
 
     $totalAmount =      $getInvoiceResponse['total_amount'];
     $roundingAmount =   $getInvoiceResponse['rounding_amount'];
@@ -57,8 +57,10 @@ try {
     $invoiceDate =      $getInvoiceResponse['invoice_date'];
     $dueDate =          $getInvoiceResponse['due_date'];
     $paidDate =         $getInvoiceResponse['paid_date'];
+    $events =            $getInvoiceResponse['events'];
     $options =          $getInvoiceResponse['options'];
     $deliveryType =     $getInvoiceResponse['delivery_type'];
+
 } catch (PayerException $e) {
     var_dump($e);
 }

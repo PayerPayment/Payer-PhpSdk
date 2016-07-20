@@ -95,17 +95,16 @@ class InvoiceTest extends PayerTestCase {
         $createInvoiceResponse = $this->stub->createDummyInvoice();
 
         $bindingData = array(
-            'invoice_number' => $createInvoiceResponse['invoice_number'],
-            'entry_id'       => $activeTemplateEntriesResponse[0]['entry_id']
+            'invoice_number'    => $createInvoiceResponse['invoice_number'],
+            'template_entry_id' => $activeTemplateEntriesResponse['template_entries'][0]['template_entry_id']
         );
         $bindingResponse = $this->stub->invoice->bindToTemplateEntry($bindingData);
 
         var_dump($bindingResponse);
 
         $this->assertTrue(
-            !empty($bindingResponse['binding_id']) &&
-            !empty($bindingResponse['invoice_number']) &&
-            !empty($bindingResponse['entry_id'])
+            !empty($bindingResponse['template_entry_binding_id']) &&
+            !empty($bindingResponse['create_date'])
         );
     }
 
@@ -142,12 +141,38 @@ class InvoiceTest extends PayerTestCase {
     }
 
     /**
-     * Test send an invoice
+     * Test send an invoice copy via email
      *
      * @return void
      *
      */
-    public function testSendInvoice()
+    public function testSendEmailInvoice()
+    {
+        print "testSendInvoice()\n";
+
+        $createActiveInvoiceResponse = $this->stub->createActivatedDummyInvoice();
+
+        $sendInvoiceData = array(
+            'invoice_number' => $createActiveInvoiceResponse['invoice_number'],
+            'options' => array(
+                'delivery_type' => 'email'
+            )
+        );
+
+        $sendInvoiceResponse = $this->stub->invoice->send($sendInvoiceData);
+
+        var_dump($sendInvoiceResponse);
+
+        $this->assertTrue(!empty($sendInvoiceResponse));
+    }
+
+    /**
+     * Test send an invoice copy via print
+     *
+     * @return void
+     *
+     */
+    public function testSendPrintInvoice()
     {
         print "testSendInvoice()\n";
 

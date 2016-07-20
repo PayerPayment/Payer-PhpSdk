@@ -30,18 +30,17 @@ use Payer\Sdk\Resource\Order;
 use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
-    'charset'       => 'UTF-8',
+    'order_number'  => base64_encode(rand()),
     'description'   => 'This is an order description',
-    'reference_id'  => base64_encode(rand()),
+    'currency'      => 'SEK',
     'test_mode'     => true,
+    'client_ip'     => $_SERVER['REMOTE_ADDR'],
+    'charset'       => 'UTF-8',
     'customer'  => array(
         'identity_number' => '556736-8724',
         'first_name'    => 'Test',
         'last_name'     => 'Person',
-        'organisation' => array(
-            'name'      => 'Payer Financial Services AB',
-            'reference' => ''
-        ),
+        'organisation'  =>'Payer Financial Services AB',
         'address'       => array(
             'co'            => '',
             'address_1'     => 'Testvägen 123',
@@ -57,11 +56,7 @@ $data = array(
         ),
         'email' => 'demo@payer.se'
     ),
-    'options' => array(
-        //'delivery_type' => '',
-        //'template_type' => ,
-        //'style'         => ''
-    ),
+
     'items' => array(
         array(
             'type'                  => 'freeform',
@@ -85,7 +80,8 @@ $data = array(
             //'account'               => null,
             //'dist_agent_id'         => null
         )
-    )
+    ),
+    'options' => array()
 );
 
 try {

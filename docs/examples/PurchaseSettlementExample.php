@@ -60,9 +60,8 @@ use Payer\Sdk\Client;
 use Payer\Sdk\Resource\Purchase;
 
 $data = array(
-    // Add extended callback addresses here
     'proxy' => array(
-        '::1'
+        '::1'   // For debugging purposes: Add the requestors ip to pass the firewall validation
     )
 );
 

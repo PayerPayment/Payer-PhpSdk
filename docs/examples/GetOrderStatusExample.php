@@ -30,7 +30,7 @@ use Payer\Sdk\Resource\Order;
 use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
-    'order_id' => '123456789' // The id of the order to fetch
+    'order_id' => '' // The id of the order to fetch
 );
 
 try {
@@ -51,8 +51,8 @@ try {
     $delivered_vat      = $getOrderResponse['delivered_vat'];
     $options            = $getOrderResponse['options'];
 
-    $userId                 = $getOrderResponse['customer']['user_id'];
-    $merchantCustomerId     = $getOrderResponse['customer']['merchant_customer_id'];
+    $customerId         = $getOrderResponse['customer']['id'];
+    $userId             = $getOrderResponse['customer']['user_id'];
 
     $invoiceNumber      = $getOrderResponse['invoice']['invoice_number'];
     $createDate         = $getOrderResponse['invoice']['create_date'];
