@@ -19,7 +19,7 @@ For more information about our payment services, please visit [www.payer.se](htt
   * Run `composer require payer/sdk` to install the package
   * See the examples in `docs/examples` for further usage
 
-For a full description about how to get started, download the extended [SDK Documentation](http://payer.se/external/PAYER_PHP_SDK_DOCUMENTATION.pdf) from [here](http://payer.se/external/PAYER_PHP_SDK_DOCUMENTATION.pdf).
+For a full description about how to get started, download the extended SDK Documentation from [here](http://developers.payer.se/documentation/sdk/php/).
 
 ## Running Test Cases
 
