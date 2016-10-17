@@ -34,26 +34,6 @@ class Client {
 	 * This is the main method that initiates the Payer Gateway
 	 * and all available Payment Services.
 	 *
-	 * To be able to create an instance of the Payer Gateway you need
-	 * to pass the credential array with follwing format:
-	 *
-	 * $credentials = array(
-	 * 		'agent_id' => 'TESTINSTALLATION',
-	 * 		'post' => array(
-	 *			'key_1'             => 'j3qh0b3B22sIyWulCZKeFJvIMx9mylLId2Qd4JEUAWtYJOacDKg9kCGWZE0oQKWUCDXwcshCfArOerQI2XGcpdYfIXtoyg02JWnLfuekVvZ1NGyFt5HJ8vOGj9VIeUzO',
-	 *			'key_2'             => 'mzuP5yWQWzesjrRlfQToHSf1B2xjNseZRyFLWrsIRw12NIcTpW9XFdN76afIsjyaI4Muk543qTT5sWNHJLueP8aK8gjqqHrYB5jLYcEfWn0eaNMJo7O55PF3VOicmA2N',
-	 *			'redirect_path'     => 'http://secure.payer.se/w3/payread.cgi',
-	 *			'version'           => 30
-	 * 		),
-	 * 		'rest' => array(
-	 * 			'username' => 'TESTINSTALLATION',
-	 *			'password' => 'payertest123'
-	 * 		),
-	 * 		'soap' => array(
-	 * 			'username' => 'TESTINSTALLATION',
-	 *			'password' => 'ZRyFLWrsIRw12NIcTpW9XFdN76afIsjyaI4Muk543qTT5s'
-	 * 		)
-	 * )
 	 *
 	 * NOTICE: At least one of the webservice credentials has to be
 	 * added in the array to be able to initiate the Payment Gateway.

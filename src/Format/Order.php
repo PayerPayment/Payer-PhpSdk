@@ -46,6 +46,10 @@ class Order extends DataFormatter
             $customer['organisation'] = '';
         }
 
+        if (!array_key_exists("your_reference", $customer)) {
+            $customer['your_reference'] = '';
+        }
+
         if (!array_key_exists("first_name", $customer)) {
             $customer['first_name'] = '';
         }

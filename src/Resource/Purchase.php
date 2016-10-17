@@ -282,8 +282,8 @@ class Purchase extends PayerResource
         $post->add_buyer_info (
             $customer['first_name'],
             $customer['last_name'],
-            $customer['address']['address_1'],
-            $customer['address']['address_2'],
+            ( !empty( $customer['address']['co'] ) ? 'c/o ' . $customer['address']['co'] : $customer['address']['address_1'] ),
+            ( !empty( $customer['address']['co'] ) ? $customer['address']['address_1'] : $customer['address']['address_2'] ),
             $customer['zip_code'],
             $customer['city'],
             $customer['country_code'],
@@ -294,7 +294,7 @@ class Purchase extends PayerResource
             $customer['organisation'],
             $customer['identity_number'],
             $customer['id'],
-            $customer['first_name'] . ' ' . $customer['last_name']
+            $customer['your_reference']
         );
     }
 

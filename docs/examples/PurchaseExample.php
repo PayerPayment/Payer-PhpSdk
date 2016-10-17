@@ -38,9 +38,9 @@ $data = array(
             'redirect'  => 'http://example.com',
             'success'   => 'http://example.com'
         ),
-        'options' => array(
+        // 'options' => array(
             // 'store' => true
-        )
+        // )
     ),
     'purchase' => array(
         'charset'       => 'UTF-8',
@@ -48,9 +48,11 @@ $data = array(
         'description'   => 'This is an order description',
         'reference_id'  => base64_encode(rand()),
         'test_mode'     => true,
+
         'customer' => array(
             'identity_number'   => '',
-            'organisation'  => 'Test Company',
+            // 'organisation'      => 'Test Company',
+            // 'your_reference'    => 'Test Reference',
             'first_name'        => '',
             'last_name'         => '',
             'address' => array(

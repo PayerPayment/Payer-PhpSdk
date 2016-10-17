@@ -204,29 +204,34 @@ class PayerResourceStub
             'customer' => array(
                 'identity_number' => '556736-8724',
                 'organisation' => 'Payer Financial Services AB',
+                'your_reference'  => 'Test Reference',
                 'first_name'    => 'Test',
                 'last_name'     => 'Person',
+
                 'address'       => array(
-                    # 'co'            => '',
+                    'co'            => 'Olle Persson',
                     'address_1'     => 'Testvägen 123',
                     # 'address_2'     => ''
                 ),
+
                 'zip_code'      => 12345,
                 'city'          => 'Teststaden',
                 'country_code'  => 'SE',
+
                 'phone' => array(
                     'home'      => '1234567890',
                     'work'      => '0987654321',
                     'mobile'    => '111222333444'
                 ),
+
                 'email' => 'demo@payer.se'
             ),
 
-            'options' => array(
-                # 'delivery_type' => '',
-                # 'template_type' => 2,
-                # 'style'         => ''
-            ),
+            // 'options' => array(
+            //     'delivery_type' => '',
+            //     'template_type' => 2,
+            //     'style'         => 'relax'
+            // ),
 
             'items' => array(
                 array(

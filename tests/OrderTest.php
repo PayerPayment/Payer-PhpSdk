@@ -42,9 +42,7 @@ class OrderTest extends PayerTestCase {
         print "testCreateOrder()\n";
 
         $orderData = $this->stub->orderData;
-
         $createOrderResponse = $this->stub->order->create($orderData);
-
         var_dump($createOrderResponse);
 
         $this->assertTrue(
@@ -64,13 +62,10 @@ class OrderTest extends PayerTestCase {
         print "testCreateOrderAndGetStatus()\n";
 
         $createOrderResponse = $this->stub->createDummyOrder();
-
         $getStatusData =  array(
             'order_id' => $createOrderResponse['order_id']
         );
-
         $getStatusResponse = $this->stub->order->getStatus($getStatusData);
-
         var_dump($getStatusResponse);
 
         $this->assertTrue(!empty($getStatusResponse));
@@ -87,13 +82,10 @@ class OrderTest extends PayerTestCase {
         print "testCreateAndCommitOrder()\n";
 
         $createOrderResponse = $this->stub->createDummyOrder();
-
         $commitData =  array(
             'order_id' => $createOrderResponse['order_id']
         );
-
         $commitOrderResponse = $this->stub->order->commit($commitData);
-
         var_dump($commitOrderResponse);
 
         $this->assertTrue($commitOrderResponse['invoice_number'] > 0);

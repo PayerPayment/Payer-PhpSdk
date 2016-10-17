@@ -77,7 +77,6 @@ class Order extends PayerResource
             throw new InvalidRequestException("Missing argument: 'items'");
         }
 
-        print_r($order);
         $options = $order['options'];
 
         $orderDetails = $this->_handleOrderDetailsFormat($order);
@@ -193,13 +192,13 @@ class Order extends PayerResource
 
             'CustomerId'    => $customer['id'],
             'Company'       => $customer['organisation'],
-            'YourReference' => $customer['first_name'] . ' ' . $customer['last_name'],
+            'YourReference' => $customer['your_reference'],
             'PersonalId'    => $customer['identity_number'],
             'FirstName'     => $customer['first_name'],
             'LastName'      => $customer['last_name'],
             'invoiceAddress' => array(
-                'Address1'  => $customer['address']['address_1'],
-                'Address2'  => $customer['address']['address_2'],
+                'Address1'  => ( !empty( $customer['address']['co'] ) ? 'c/o ' . $customer['address']['co'] : $customer['address']['address_1'] ),
+                'Address2'  => ( !empty( $customer['address']['co'] ) ? $customer['address']['address_1'] : $customer['address']['address_2'] ),
                 'ZipCode'   => $customer['zip_code'],
                 'City'      => $customer['city'],
                 'CountryId' => $customer['country_code']
