@@ -195,8 +195,8 @@ class PayerResourceStub
     {
         $this->orderData = array(
 
-            # 'charset'       => 'ISO-8859-1',
-            # 'currency'      => 'SEK',
+            // 'charset'       => 'ISO-8859-1',
+            // 'currency'      => 'SEK',
             'description'   => 'Payer Sdk Test ' . date('Y-m-d H:i:s'),
             'order_number'  => base64_encode(rand()),
             'test_mode'     => true,
@@ -209,9 +209,9 @@ class PayerResourceStub
                 'last_name'     => 'Person',
 
                 'address'       => array(
-                    'co'            => 'Olle Persson',
                     'address_1'     => 'Testvägen 123',
-                    # 'address_2'     => ''
+                    // 'address_2'     => ''
+                    // 'co'            => '',
                 ),
 
                 'zip_code'      => 12345,
@@ -243,17 +243,17 @@ class PayerResourceStub
                     'unit_vat_percentage'   => 20,
                     'quantity'              => 10,
                     'unit'                  => null,
-                    # 'account'               => null,
-                    # 'dist_agent_id'         => null
+                    // 'account'               => null,
+                    // 'dist_agent_id'         => null
                 ),
                 array(
                     'type'                  => 'infoline',
                     'line_number'           => 2,
                     'article_number'        => 'ABC123',
                     'description'           => "This is an infoline description",
-                    # 'unit'                  => null,
-                    # 'account'               => null,
-                    # 'dist_agent_id'         => null
+                    // 'unit'                  => null,
+                    // 'account'               => null,
+                    // 'dist_agent_id'         => null
                 )
             )
 

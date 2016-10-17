@@ -56,9 +56,9 @@ $data = array(
             'first_name'        => '',
             'last_name'         => '',
             'address' => array(
-                'co'            => '',
                 'address_1'     => '',
                 'address_2'     => '',
+                'co'            => '',
             ),
             'zip_code'      => 12345,
             'city'          => 'Stockholm',
