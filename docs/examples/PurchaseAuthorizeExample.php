@@ -46,11 +46,17 @@ require_once "../../vendor/autoload.php";
 use Payer\Sdk\Client;
 use Payer\Sdk\Resource\Purchase;
 
+$data = array(
+    'proxy' => array(
+        '::1'   // For debugging purposes: Add the requestors ip to pass the firewall validation
+    )
+);
+
 try {
     $gateway = Client::create($credentials);
 
     $purchase = new Purchase($gateway);
-    $purchase->createAuthorizeResource();
+    $purchase->createAuthorizeResource($data);
 
 } catch (PayerException $e) {
     var_dump($e);

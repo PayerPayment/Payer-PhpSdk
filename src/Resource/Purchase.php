@@ -115,11 +115,13 @@ class Purchase extends PayerResource
     /**
      * Creates a authorize callback response resource
      *
+     * @param array $input Voluntary options
      * @return void
      *
      */
-    public function createAuthorizeResource()
+    public function createAuthorizeResource(array $input = array())
     {
+        $this->validateCallbackRequest($input);
         $this->acceptCallbackRequest();
     }
 
