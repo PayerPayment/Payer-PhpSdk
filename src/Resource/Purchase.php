@@ -180,7 +180,7 @@ class Purchase extends PayerResource
         $transactionId = $soap->debitByReference(
             $recurringToken,
             $referenceId,
-            double($amount),
+            (double) $amount,
             $currency,
             $description,
             doubleval($vatPercentage)
