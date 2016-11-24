@@ -72,18 +72,44 @@ class OrderTest extends PayerTestCase {
     }
 
     /**
-     * Test create and commit an order
+     * Test create and commit an order by order id
      *
      * @return void
      *
      */
-    public function testCreateAndCommitOrder()
+    public function testCreateAndCommitOrderByOrderId()
     {
-        print "testCreateAndCommitOrder()\n";
+        print "testCreateAndCommitOrderByOrderId()\n";
 
         $createOrderResponse = $this->stub->createDummyOrder();
         $commitData =  array(
             'order_id' => $createOrderResponse['order_id']
+        );
+        $commitOrderResponse = $this->stub->order->commit($commitData);
+        var_dump($commitOrderResponse);
+
+        $this->assertTrue($commitOrderResponse['invoice_number'] > 0);
+    }
+
+    /**
+     * Test create and commit an order by reference id
+     *
+     * @return void
+     *
+     */
+    public function testCreateAndCommitOrderByReferenceId()
+    {
+        print "testCreateAndCommitOrderByReferenceId()\n";
+
+        $orderData = $this->stub->orderData;
+
+        // Add the merchants reference id
+        $orderNumber = base64_encode(rand());
+        $orderData['order_number'] = $orderNumber;
+
+        $this->stub->createDummyOrder($orderData);
+        $commitData =  array(
+            'reference_id' => $orderNumber
         );
         $commitOrderResponse = $this->stub->order->commit($commitData);
         var_dump($commitOrderResponse);

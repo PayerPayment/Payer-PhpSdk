@@ -56,7 +56,7 @@ try {
     $gateway = Client::create($credentials);
 
     $purchase = new Purchase($gateway);
-    $purchase->createAuthorizeResource($data);
+    $purchase->createAuthorizeResource();
 
 } catch (PayerException $e) {
     var_dump($e);

@@ -148,6 +148,26 @@ class SoapService extends WebserviceInterface implements PayerSoapInterface
 	}
 
 	/**
+	 * Transfers the order to an invoice
+	 *
+	 * @param $referenceId
+	 * @return int The invoice number
+	 * @throws WebserviceException
+	 *
+	 */
+	public function commitOrderByReference($referenceId)
+	{
+		try {
+			return  $this->soap->commitOrderByReference(
+				$this->sessionId,
+				$referenceId
+			);
+		} catch (Exception $e) {
+			$this->_handleException($e->getMessage());
+		}
+	}
+
+	/**
 	 * Creates a new order
 	 *
 	 * @param $OrderHeader

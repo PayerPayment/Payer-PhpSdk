@@ -29,7 +29,8 @@ use Payer\Sdk\Client;
 use Payer\Sdk\Resource\Order;
 
 $data = array(
-    'order_id' => '' // Enter the id of the order to commit
+    'order_id' => '', // Enter the id of the order to commit
+    // 'reference_id' => ''
 );
 
 try {

@@ -110,6 +110,25 @@ class Order extends DataFormatter
     }
 
     /**
+     * Handles the default 'Commit Order' object format
+     *
+     * @param array $commit The commit request object to be filtered
+     * @return array The filtered commit object
+     *
+     */
+    public function filterCommit(array $commit) {
+        if (!array_key_exists("order_id", $commit)) {
+            $commit['order_id'] = '';
+        }
+
+        if (!array_key_exists("reference_id", $commit)) {
+            $commit['reference_id'] = '';
+        }
+
+        return $commit;
+    }
+
+    /**
      * Handles the default 'Get Status' object format
      *
      * @param array $getStatus The get status request object to be filtered

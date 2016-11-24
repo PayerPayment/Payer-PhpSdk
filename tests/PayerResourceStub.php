@@ -172,13 +172,20 @@ class PayerResourceStub
     /**
      * Creates a non-commited order
      *
+     * @param $orderData
      * @return array
      * @throws InvalidRequestException
      *
      */
-    public function createDummyOrder()
+    public function createDummyOrder(array $orderData = array())
     {
-        $createOrderResponse = $this->order->create($this->orderData);
+        $data = $orderData;
+
+        if (empty($data)) {
+            $data = $this->orderData;
+        }
+
+        $createOrderResponse = $this->order->create($data);
 
         var_dump($createOrderResponse);
 

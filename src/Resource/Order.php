@@ -109,16 +109,25 @@ class Order extends PayerResource
      */
     public function commit(array $input)
     {
-        $orderId = $input['order_id'];
+        $input = $this->_formatter->filterCommit($input);
 
-        if (empty($orderId)) {
-            throw new InvalidRequestException("Missing argument: 'order_id'");
+        $orderId = $input['order_id'];
+        $referenceId = $input['reference_id'];
+
+        if (empty($orderId) && empty($referenceId)) {
+            throw new InvalidRequestException("Missing argument: 'order_id' or 'reference_id");
         }
 
         $soap = $this->gateway->getSoapService();
 
         $soap->start();
-        $invoiceNumber = $soap->commitOrder($orderId);
+
+        if (!empty($referenceId)) {
+            $invoiceNumber = $soap->commitOrderByReference($referenceId);
+        } else {
+            $invoiceNumber = $soap->commitOrder($orderId);
+        }
+
         $soap->close();
 
         return array(
