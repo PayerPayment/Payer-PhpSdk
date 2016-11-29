@@ -79,27 +79,23 @@ $data = array(
                 'unit_price'            => 40,
                 'unit_vat_percentage'   => 20,
                 'quantity'              => 5,
-                'unit'                  => null,
-                'account'               => null,
-                'dist_agent_id'         => null
+                'unit'                  => null
             ),
-            array(
-                'type'                  => 'infoline',
-                'line_number'           => 2,
-                'article_number'        => 'ABC123',
-                'description'           => "This is an infoline description",
-                'unit'                  => null,
-                'account'               => null,
-                'dist_agent_id'         => null
-            ),
-            array(
-                'type'                  => 'fee',
-                'article_number'        => 'ABC123',
-                'description'           => "This is an fee description",
-                'unit_price'            => 40,
-                'unit_vat_percentage'   => 25,
-                'quantity'              => 1,
-            )
+            // array(
+            //     'type'                  => 'infoline',
+            //     'line_number'           => 2,
+            //     'article_number'        => 'ABC123',
+            //     'description'           => "This is an infoline description",
+            //     'unit'                  => null
+            // ),
+            // array(
+            //     'type'                  => 'fee',
+            //     'article_number'        => 'ABC123',
+            //     'description'           => "This is an fee description",
+            //     'unit_price'            => 40,
+            //     'unit_vat_percentage'   => 25,
+            //     'quantity'              => 1,
+            // )
         )
     )
 );

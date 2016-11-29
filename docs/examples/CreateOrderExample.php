@@ -31,7 +31,7 @@ use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
 
-    'order_number'  => base64_encode(rand()),
+    'reference_id'  => base64_encode(rand()),
     'description'   => 'This is an order description',
     'currency'      => 'SEK',
     'test_mode'     => true,
@@ -74,20 +74,16 @@ $data = array(
             'unit_price'            => 40,
             'unit_vat_percentage'   => 20,
             'quantity'              => 5,
-            'unit'                  => null,
-            //'account'               => null,
-            //'dist_agent_id'         => null
+            'unit'                  => null
         ),
-        array(
-            'type'                  => 'infoline',
-            'line_number'           => 2,
-            'article_number'        => 'ABC123',
-            'description'           => "This is an item description",
-            'unit_price'            => 40,
-            'unit'                  => null,
-            //'account'               => null,
-            //'dist_agent_id'         => null
-        )
+        // array(
+        //     'type'                  => 'infoline',
+        //     'line_number'           => 2,
+        //     'article_number'        => 'ABC123',
+        //     'description'           => "This is an item description",
+        //     'unit_price'            => 40,
+        //     'unit'                  => null
+        // )
     ),
 
     // 'options' => array()

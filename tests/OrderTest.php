@@ -104,12 +104,12 @@ class OrderTest extends PayerTestCase {
         $orderData = $this->stub->orderData;
 
         // Add the merchants reference id
-        $orderNumber = base64_encode(rand());
-        $orderData['order_number'] = $orderNumber;
+        $referenceId = base64_encode(rand());
+        $orderData['reference_id'] = $referenceId;
 
-        $this->stub->createDummyOrder($orderData);
+        $createOrderResponse = $this->stub->createDummyOrder($orderData);
         $commitData =  array(
-            'reference_id' => $orderNumber
+            'reference_id' => $referenceId
         );
         $commitOrderResponse = $this->stub->order->commit($commitData);
         var_dump($commitOrderResponse);

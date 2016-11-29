@@ -205,7 +205,7 @@ class PayerResourceStub
             // 'charset'       => 'ISO-8859-1',
             // 'currency'      => 'SEK',
             'description'   => 'Payer Sdk Test ' . date('Y-m-d H:i:s'),
-            'order_number'  => base64_encode(rand()),
+            'reference_id'  => base64_encode(rand()),
             'test_mode'     => true,
 
             'customer' => array(

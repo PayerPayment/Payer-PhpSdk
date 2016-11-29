@@ -192,7 +192,7 @@ class Order extends PayerResource
     {
         $customer = $order['customer'];
         return array(
-            'OrderNumber'   => $order['order_number'],
+            'OrderNumber'   => $order['reference_id'],
             'Description'   => $order['description'],
             'Message'       => $order['message'],
             'ClientIp'      => $order['client_ip'],
