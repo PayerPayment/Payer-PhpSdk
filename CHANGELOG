@@ -2,12 +2,19 @@
         PAYER PHP SDK CHANGELOG
 ***************************************
 
-v1.1.1
+v1.1.2
 ----------------
 Date: 2016-11-28
 
     Mathias Åkerberg <mathias.akerberg@payer.se>
         Parameter order_number was renamed to reference_id
+
+v1.1.1
+----------------
+Date: 2016-11-14
+
+    Mathias Åkerberg <mathias.akerberg@payer.se>
+        Updated Authorize Callback Resource handling
 
 v1.1.0
 ----------------
