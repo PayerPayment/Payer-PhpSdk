@@ -240,8 +240,12 @@ class Order extends DataFormatter
         }
         $order['options'] = $this->filterOptions($order['options']);
 
-        if (!array_key_exists("order_number", $order)) {
-            $order['order_number'] = '';
+        if (!array_key_exists("reference_id", $order)) {
+            if (array_key_exists("order_number", $order)) {
+                $order['reference_id'] = $order['order_number']; // Added support for < v1.1.2
+            } else {
+                $order['reference_id'] = '';
+            }
         }
 
         if (!array_key_exists("test_mode", $order)) {
