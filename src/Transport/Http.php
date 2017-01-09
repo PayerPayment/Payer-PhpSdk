@@ -79,14 +79,13 @@ class Http implements HttpTransportInterface
         $info  = $this->_curl->info();
         $error = $this->_curl->error();
 
-        $statusCode =  intval($info['http_code']);
-        if ($statusCode >= 300) {
-            throw new HttpTransportException("Response Code -> " . $error . ' ' . $statusCode);
+        if ($body === false) {
+            throw new HttpTransportException($error);
         }
 
         $response = new Response(
             $request,
-            $statusCode,
+            intval($info['http_code']),
             array(),
             strval($body)
         );

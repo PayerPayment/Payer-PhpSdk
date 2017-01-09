@@ -318,7 +318,7 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 	 * This method will return your agentid (which is the identification id for your shop).
 	 * It you want, you can use the generate_form() method instead and then you don't need to call this method. Otherwise you will need to put this in the hidden variable "payread_agentid".
 	 *
-	 * @return integer agentid
+	 * @return string agentid
 	 */
 	public function get_agentid()
 	{

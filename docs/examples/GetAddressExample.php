@@ -31,8 +31,8 @@ use Payer\Sdk\Resource\GetAddress;
 use Payer\Sdk\Transport\Http\Response;
 
 $data = array(
-    'identity_number' => '',
-    'zip_code'        => ''
+    'identity_number' => '9008221716',
+    'zip_code'        => '13234'
 );
 
 try {

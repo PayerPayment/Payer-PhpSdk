@@ -35,8 +35,11 @@ class Curl
 
     public function __construct()
     {
-        $this->init();
+        if (!extension_loaded('curl')) {
+            throw new RuntimeException('Missing Curl extension');
+        }
 
+        $this->init();
     }
 
     /**
