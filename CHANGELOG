@@ -2,6 +2,13 @@
         PAYER PHP SDK CHANGELOG
 ***************************************
 
+v1.1.6
+----------------
+Date: 2017-05-23
+
+    Mathias Åkerberg <mathias.akerberg@payer.se>
+        Extended shared options
+
 v1.1.3
 ----------------
 Date: 2016-11-28
