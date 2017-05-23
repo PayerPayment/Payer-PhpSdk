@@ -191,6 +191,14 @@ class Purchase extends DataFormatter
             $payment['options'] = array();
         }
 
+        if (!array_key_exists("interaction", $payment['options'])) {
+            $payment['options']['interaction'] = '';
+        }
+
+        if (!array_key_exists("installment_months", $payment['options'])) {
+            $payment['options']['installment_months'] = '';
+        }
+
         if (!array_key_exists("store", $payment['options'])) {
             $payment['options']['store'] = false;
         }

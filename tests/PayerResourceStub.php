@@ -216,7 +216,7 @@ class PayerResourceStub
                 'last_name'     => 'Person',
 
                 'address'       => array(
-                    'address_1'     => 'TestvÃ¤gen 123',
+                    'address_1'     => 'Testvägen 123',
                     // 'address_2'     => ''
                     // 'co'            => '',
                 ),

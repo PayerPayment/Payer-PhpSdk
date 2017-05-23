@@ -79,9 +79,9 @@ class Purchase extends PayerResource
         $this->_setOrderItems($post, $purchase['items']);
         $this->_setCustomerDetails($post, $purchase['customer']);
         $this->_setPaymentOptions($post, $payment);
-
+        
         ob_start();
-
+    
         ?>
         <!DOCTYPE html>
         <head>
@@ -435,6 +435,14 @@ class Purchase extends PayerResource
             throw new InvalidRequestException("Missing argument: 'success' in 'url'");
         }
         $post->set_success_redirect_url($url['success']);
+
+        if (!empty($payment['options']['interaction'])) {
+            $post->add_attribute('interaction', $payment['options']['interaction']);
+        }
+
+        if (!empty($payment['options']['installment_months'])) {
+            $post->add_attribute('installment.months', $payment['options']['installment_months']);
+        }
 
         if ($payment['options']['store'] == true) {
            $post->add_option("store", true);

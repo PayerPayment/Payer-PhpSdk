@@ -31,16 +31,18 @@ use Payer\Sdk\Resource\Purchase;
 $data = array(
     'payment' => array(
         'language'  => 'sv',
-        'method'    => 'card',  // Examples: card, invoice, bank, installment, swish
+        'method'    => 'auto',  // Examples: auto, card, invoice, bank, installment, swish
         'url' => array(
             'authorize' => 'http://example.com/PurchaseAuthorizeExample.php', // The url to the Authorize Callback Resource
             'settle'    => 'http://example.com/PurchaseSettlementExample.php', // The url to the Settlement Callback Resource
             'redirect'  => 'http://example.com',
             'success'   => 'http://example.com'
         ),
-        // 'options' => array(
+         'options' => array(
+            // 'installment_months' => '',
+            // 'interaction' => 'minimal',
             // 'store' => true
-        // )
+         )
     ),
     'purchase' => array(
         'charset'       => 'UTF-8',
@@ -50,7 +52,7 @@ $data = array(
         'test_mode'     => true,
 
         'customer' => array(
-            'identity_number'   => '',
+            'identity_number'   => '1602079954',
             // 'organisation'      => 'Test Company',
             // 'your_reference'    => 'Test Reference',
             'first_name'        => '',
@@ -60,13 +62,13 @@ $data = array(
                 'address_2'     => '',
                 'co'            => '',
             ),
-            'zip_code'      => 12345,
-            'city'          => 'Stockholm',
+        		'zip_code'      => 90737,
+            'city'          => '',
             'country_code'  => 'SE',
             'phone' => array(
                 'home'      => '1234567890',
-                'work'      => '0987654321',
-                'mobile'    => '111222333444'
+                'work'      => '1234567890',
+                'mobile'    => '1234567890'
             ),
             'email' => 'demo@payer.se'
         ),
@@ -76,7 +78,7 @@ $data = array(
                 'line_number'           => 1,
                 'article_number'        => 'ABC123',
                 'description'           => "This is an freeform description",
-                'unit_price'            => 40,
+                'unit_price'            => 1000,
                 'unit_vat_percentage'   => 20,
                 'quantity'              => 5,
                 'unit'                  => null
@@ -101,6 +103,7 @@ $data = array(
 );
 
 try {
+
     $gateway = Client::create($credentials);
 
     $purchase = new Purchase($gateway);
@@ -109,4 +112,3 @@ try {
 } catch (PayerException $e) {
     var_dump($e);
 }
-
