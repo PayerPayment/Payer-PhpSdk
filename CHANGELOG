@@ -2,12 +2,19 @@
         PAYER PHP SDK CHANGELOG
 ***************************************
 
-v1.1.4
+v1.1.7
 ----------------
 Date: 2017-11-03
 
     Mathias Åkerberg <mathias.akerberg@payer.se>
         Added Settlement support
+
+v1.1.6
+----------------
+Date: 2017-05-23
+
+    Mathias Åkerberg <mathias.akerberg@payer.se>
+        Extended shared options
 
 v1.1.3
 ----------------
