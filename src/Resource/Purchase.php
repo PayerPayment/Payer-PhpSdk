@@ -242,6 +242,40 @@ class Purchase extends PayerResource
     }
 
     /**
+     * Performs a settlement on a pending payment
+     *
+     * @param array $input The settlement request object
+     * @return string The transaction id of the refund
+     * @throws InvalidRequestException
+     * @throws WebserviceException
+     *
+     */
+    public function settlement(array $input)
+    {
+        $input = $this->_formatter->filterSettlement($input);
+
+        $settlementId = $input['settlement_id'];
+        if (empty($settlementId)) {
+            throw new InvalidRequestException("Missing argument: 'settlement_id'");
+        }
+
+        $amount = $input['amount'];
+        if (empty($amount)) {
+            throw new InvalidRequestException("Missing argument: 'amount'");
+        }
+
+        $soap = $this->gateway->getSoapService();
+
+        $soap->start();
+        $transactionId = $soap->settlement($settlementId, $amount);
+        $soap->close();
+
+        return array(
+            'transaction_id' => $transactionId
+        );
+    }
+
+    /**
      * Carries the validation of the callback request source
      *
      * @param array $input Voluntary  options
@@ -435,6 +469,14 @@ class Purchase extends PayerResource
             throw new InvalidRequestException("Missing argument: 'success' in 'url'");
         }
         $post->set_success_redirect_url($url['success']);
+
+        if (!empty($payment['options']['interaction'])) {
+            $post->add_attribute('interaction', $payment['options']['interaction']);
+        }
+
+        if (!empty($payment['options']['installment_months'])) {
+            $post->add_attribute('installment_month', $payment['options']['installment_months']);
+        }
 
         if ($payment['options']['store'] == true) {
            $post->add_option("store", true);

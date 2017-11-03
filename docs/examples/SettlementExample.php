@@ -21,29 +21,29 @@
  * @copyright 2016 Payer Financial Services AB
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache license v2.0
  */
-/**
- * Setup your Payer Configuration here to be able to access the webservices.
- *
- * For further questions about your configuration, please contact
- * the Payer Customer service at kundtjanst@payer.se
- *
- */
-$credentials = array(
 
-     // 'agent_id' => '',
+require_once "PayerCredentials.php";
+require_once "../../vendor/autoload.php";
 
-    // Required by Purchase, GetAddress, Challenge
+use Payer\Sdk\Client;
+use Payer\Sdk\Resource\Invoice;
+use Payer\Sdk\Resource\Purchase;
 
-     // 'post' => array(
-        // 'key_1'             => '',
-        // 'key_2'             => ''
-     // ),
-
-    // Required by Invoice, Order
-
-    // 'soap'  => array(
-       // 'username' => '',
-       // 'password' => ''
-    // )
-
+$data = array(
+     'settlement_id' => null, // Contact Payer for more info how to access this value
+     'amount' => null
 );
+
+try {
+    $gateway = Client::create($credentials);
+
+    $purchase = new Purchase($gateway);
+    $settlementResponse = $purchase->settlement($data);
+
+    var_dump($settlementResponse);
+
+    $transactionId = $settlementResponse['transaction_id'];
+
+} catch (PayerException $e) {
+    var_dump($e);
+}

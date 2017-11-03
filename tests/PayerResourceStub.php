@@ -271,8 +271,8 @@ class PayerResourceStub
                 'language'  => 'sv',
                 'method'    => 'card',
                 'url' => array(
-                    'authorize' => 'http://example.com/PurchaseAuthorizationExample.php',   // Authorization Resource
-                    'settle'    => 'http://example.com/PurchaseSettlementExample.php',      // Settlement Resource
+                    'authorize' => 'http://example.com/CallbackEndpointAuthorizeExample.php',   // Authorization Resource
+                    'settle'    => 'http://example.com/CallbackEndpointSettlementExample.php',  // Settlement Resource
                     'redirect'  => 'http://example.com',
                     'success'   => 'http://example.com'
                 )

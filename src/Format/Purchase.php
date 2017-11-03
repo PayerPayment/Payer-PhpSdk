@@ -191,6 +191,14 @@ class Purchase extends DataFormatter
             $payment['options'] = array();
         }
 
+        if (!array_key_exists("interaction", $payment['options'])) {
+            $payment['options']['interaction'] = '';
+        }
+
+        if (!array_key_exists("installment_months", $payment['options'])) {
+            $payment['options']['installment_months'] = '';
+        }
+
         if (!array_key_exists("store", $payment['options'])) {
             $payment['options']['store'] = false;
         }
@@ -224,6 +232,26 @@ class Purchase extends DataFormatter
         }
 
         return $refund;
+    }
+
+    /**
+     * Handles the default 'Settlement' object format
+     *
+     * @param array $settlement The settlement request object to be filtered
+     * @return array The filtered settlement object
+     *
+     */
+    public function filterSettlement(array $settlement)
+    {
+        if (!array_key_exists("settlement_id", $settlement)) {
+            $settlement['settlement_id'] = '';
+        }
+
+        if (!array_key_exists("amount", $settlement)) {
+            $settlement['amount'] = '';
+        }
+
+        return $settlement;
     }
 
 }

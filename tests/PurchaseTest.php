@@ -34,22 +34,45 @@ class PurchaseTest extends PayerTestCase {
     }
 
     /**
-     * Test initiating a purchase through the payment dialogue
+     * Initiates a purchase through the payment dialogue
      *
      * @return void
      */
-    public function testPurchase()
+    public function testCreatePurchase()
     {
         print "testPurchase()\n";
 
-        $purchaseData = $this->stub->purchaseData;
+        // TODO: Impl
 
-        $purchaseResponse = $this->stub->purchase->create($purchaseData);
+        $this->fail();
+    }
 
-        $this->assertTrue(
-            $purchaseResponse === true,
-            "Payment initiated successfully"
-        );
+    /**
+     * Test refund a payment
+     *
+     * @return void
+     */
+    public function testRefund()
+    {
+        print "testRefund()\n";
+
+        // TODO: Impl
+
+        $this->fail();
+    }
+
+    /**
+     * Test settlement a pending payment
+     *
+     * @return void
+     */
+    public function testSettlement()
+    {
+        print "testRefund()\n";
+
+        // TODO: Impl
+
+        $this->fail();
     }
 
 }

@@ -31,16 +31,18 @@ use Payer\Sdk\Resource\Purchase;
 $data = array(
     'payment' => array(
         'language'  => 'sv',
-        'method'    => 'card',  // Examples: card, invoice, bank, installment, swish
+        'method'    => 'invoice',  // Examples: auto, card, invoice, bank, installment, swish
         'url' => array(
-            'authorize' => 'http://example.com/PurchaseAuthorizeExample.php', // The url to the Authorize Callback Resource
-            'settle'    => 'http://example.com/PurchaseSettlementExample.php', // The url to the Settlement Callback Resource
+            'authorize' => 'http://example.com/CallbackEndpointAuthorizeExample.php', // The url to the Authorize Callback Resource
+            'settle'    => 'http://example.com/CallbackEndpointSettlementExample.php', // The url to the Settlement Callback Resource
             'redirect'  => 'http://example.com',
             'success'   => 'http://example.com'
         ),
-        // 'options' => array(
+         'options' => array(
+             'installment_months' => '',
+             'interaction' => 'minimal',
             // 'store' => true
-        // )
+         )
     ),
     'purchase' => array(
         'charset'       => 'UTF-8',
@@ -50,7 +52,7 @@ $data = array(
         'test_mode'     => true,
 
         'customer' => array(
-            'identity_number'   => '',
+            'identity_number'   => '1602079954',
             // 'organisation'      => 'Test Company',
             // 'your_reference'    => 'Test Reference',
             'first_name'        => '',
@@ -101,7 +103,12 @@ $data = array(
 );
 
 try {
-    $gateway = Client::create($credentials);
+
+    $options = array(
+      'domain' => 'http://vmware.payer.se:8080/WS_maker'
+    );
+
+    $gateway = Client::create($credentials, $options);
 
     $purchase = new Purchase($gateway);
     $purchase->create($data);
@@ -109,4 +116,3 @@ try {
 } catch (PayerException $e) {
     var_dump($e);
 }
-

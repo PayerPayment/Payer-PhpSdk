@@ -47,6 +47,8 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 
 	public $myMessage;
 
+	public $myAttributes = array();
+
 	public $myFreeformPurchases = array ();
 
 	public $myCatalogPurchases = array ();
@@ -315,6 +317,16 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 	}
 
 	/**
+	 * This method will return a list of all your added attributes
+	 *
+	 * @return array attributes
+	 */
+	public function get_attributes()
+	{
+		return $this->myAttributes;
+	}
+
+	/**
 	 * This method will return your agentid (which is the identification id for your shop).
 	 * It you want, you can use the generate_form() method instead and then you don't need to call this method. Otherwise you will need to put this in the hidden variable "payread_agentid".
 	 *
@@ -454,6 +466,17 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 	public function set_message($theMessage)
 	{
 		$this->myMessage = $theMessage;
+	}
+
+	/**
+	 * This method sets an attribute
+	 *
+	 * @deprecated
+	 *
+	 */
+	public function add_attribute($key, $value)
+	{
+		$this->myAttributes [] = array ( $key => $value );
 	}
 
 	/**
@@ -1093,6 +1116,14 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 
 		// Database overrides
 		$this->myXmlData .= "<database_overrides>\n";
+
+		// Attributes
+		foreach ($this->myAttributes as $attribute) {
+			$this->myXmlData .= "<attribute>\n";
+			$this->myXmlData .= "<key>" . $attribute['key'] . "</key>\n";
+			$this->myXmlData .= "<value>" . $attribute['value'] . "</value>\n";
+			$this->myXmlData .= "</attribute>\n";
+		}
 
 		// Payment methods
 		$this->myXmlData .= "<accepted_payment_methods>\n";

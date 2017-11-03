@@ -337,6 +337,26 @@ class SoapService extends WebserviceInterface implements PayerSoapInterface
 	}
 
 	/**
+	 * Performs a settlement on a pending, only authorized, payment
+	 *
+	 * @return int The transaction id
+	 * @throws WebserviceException
+	 *
+	 */
+	public function settlement($settlementId, $amount)
+	{
+		try {
+			return $this->soap->delayedSettlement(
+				$this->sessionId,
+				$settlementId,
+				$amount
+			);
+		} catch (Exception $e) {
+			$this->_handleException($e->getMessage());
+		}
+	}
+
+	/**
 	 * Refunds the transaction by the entered amount
 	 *
 	 * @param string|int $TransactionId The id of the transaction to refund
