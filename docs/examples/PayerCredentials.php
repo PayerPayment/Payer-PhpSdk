@@ -32,7 +32,7 @@ $credentials = array(
 
      // 'agent_id' => '',
 
-    // Required by Purchase, GetAddress, Challenge
+     // Required by Purchase, GetAddress, Challenge
 
      // 'post' => array(
         // 'key_1'             => '',

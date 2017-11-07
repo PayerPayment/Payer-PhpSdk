@@ -916,10 +916,37 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 	 *
 	 */
 	public function get_request_url() {
-		if (empty ( $_SERVER ["REQUEST_URI"] )) {
-			return ($_SERVER ["SERVER_PORT"] == "80" ? "http://" : "https://") . $_SERVER ["HTTP_HOST"] . $_SERVER ["PHP_SELF"] . "?" . $_SERVER ["QUERY_STRING"];
+		$domain = $_SERVER ["HTTP_HOST"];
+
+		$relative_path = $_SERVER ["PHP_SELF"] . "?" . $_SERVER ["QUERY_STRING"];
+		if ( isset($_SERVER ["REQUEST_URI"]) )
+			$relative_path = $_SERVER ["REQUEST_URI"];
+
+		$protocol = 'http';
+		if ($this->is_ssl())
+			$protocol = 'https';
+
+		$url = $protocol . '://' . $domain . $relative_path;
+
+		return $url;
+	}
+
+	/**
+	 * Checks whether the current HTTP connection is running under SSL
+	 *
+	 * @return bool
+	 */
+	public function is_ssl() {
+		if ( isset($_SERVER['HTTPS']) ) {
+			if ( 'on' == strtolower($_SERVER['HTTPS']) )
+				return true;
+			if ( '1' == $_SERVER['HTTPS'] )
+				return true;
+		} elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
+				return true;
 		}
-		return ($_SERVER ["SERVER_PORT"] == "80" ? "http://" : "https://") . $_SERVER ["HTTP_HOST"] . $_SERVER ["REQUEST_URI"];
+
+		return false;
 	}
 
 	/**

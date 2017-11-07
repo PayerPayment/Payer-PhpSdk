@@ -31,7 +31,7 @@ use Payer\Sdk\Resource\Purchase;
 $data = array(
     'payment' => array(
         'language'  => 'sv',
-        'method'    => 'invoice',  // Examples: auto, card, invoice, bank, installment, swish
+        'method'    => 'card',  // Examples: auto, card, invoice, bank, installment, swish
         'url' => array(
             'authorize' => 'http://example.com/CallbackEndpointAuthorizeExample.php', // The url to the Authorize Callback Resource
             'settle'    => 'http://example.com/CallbackEndpointSettlementExample.php', // The url to the Settlement Callback Resource
@@ -39,8 +39,8 @@ $data = array(
             'success'   => 'http://example.com'
         ),
          'options' => array(
-             'installment_months' => '',
-             'interaction' => 'minimal',
+            // 'installment_months' => '',
+            // 'interaction' => 'minimal',
             // 'store' => true
          )
     ),
@@ -104,11 +104,7 @@ $data = array(
 
 try {
 
-    $options = array(
-      'domain' => 'http://vmware.payer.se:8080/WS_maker'
-    );
-
-    $gateway = Client::create($credentials, $options);
+    $gateway = Client::create($credentials);
 
     $purchase = new Purchase($gateway);
     $purchase->create($data);

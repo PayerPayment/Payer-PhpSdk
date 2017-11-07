@@ -53,6 +53,7 @@ $data = array(
 );
 
 try {
+  
     $gateway = Client::create($credentials);
 
     $purchase = new Purchase($gateway);
@@ -61,5 +62,3 @@ try {
 } catch (PayerException $e) {
     var_dump($e);
 }
-
-
