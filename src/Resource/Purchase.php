@@ -191,6 +191,39 @@ class Purchase extends PayerResource
             'transaction_id' => $transactionId
         );
     }
+    
+    /**
+     * Returns the raw data used in the post request to initiate
+     * a payment session through the payment dialogue
+     *
+     * @param array $input The create purchase object
+     * @return array The raw data of the post request
+     * @throws InvalidRequestException
+     *
+     */
+    public function getPostData(array $input)
+    {
+	    	$input = $this->_formatter->filterCreatePurchase($input);
+	    
+	    	$payment = $input['payment'];
+	    	$purchase = $input['purchase'];
+	    
+	    	$post = $this->gateway->getPostService();
+	    
+	    	$this->_setOrderDetails($post, $purchase);
+	    	$this->_setOrderItems($post, $purchase['items']);
+	    	$this->_setCustomerDetails($post, $purchase['customer']);
+	    	$this->_setPaymentOptions($post, $payment);
+
+   		return array(
+   			'server_url' => $post->get_server_url(),
+   			'agent_id' => $post->get_agentid(),
+   			'api_version' => $post->get_api_version(),
+   			'xml_data' => $post->get_xml_data(),
+   			'checksum' => $post->get_checksum(),
+   			'charset' => $post->get_charset()
+   		);	
+     }
 
     /**
      * Refunds an invoice with the defined amount

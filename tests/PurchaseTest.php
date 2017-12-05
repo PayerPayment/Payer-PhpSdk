@@ -48,6 +48,20 @@ class PurchaseTest extends PayerTestCase {
     }
 
     /**
+     * Get the raw data of the post request
+     *
+     * @return void
+     */
+    public function testGetPostdata()
+    {
+	    	print "testGetPostdata()\n";
+	    
+	    	// TODO: Impl
+	    
+	    	$this->fail();
+    }
+    
+    /**
      * Test refund a payment
      *
      * @return void
