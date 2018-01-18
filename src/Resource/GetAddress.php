@@ -106,13 +106,7 @@ class GetAddress extends PayerResource
         $http = new Http;
         $response = $http->request($request);
 
-        $customer = Response::fromJson(
-            iconv(
-                'ISO-8859-1',
-                'UTF-8',
-                $response->getData()
-            )
-        );
+        $customer = Response::fromJson($response->getData());
 
         return array(
             'status'            => $customer['status'],
