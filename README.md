@@ -1,4 +1,4 @@
-![Payer Logotype](http://payer.se/public/PAYER_LOGO_GITHUB_2016.jpg)
+![Payer Logotype](http://www.payer.se/public/PAYER-GENERIC_LOGO-2018.png)
 
 # Payer Php SDK
 
