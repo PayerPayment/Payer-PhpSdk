@@ -476,7 +476,10 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 	 */
 	public function add_attribute($key, $value)
 	{
-		$this->myAttributes [] = array ( $key => $value );
+		$this->myAttributes[] = array(
+		  'key'   => $key,
+		  'value' => $value
+		);
 	}
 
 	/**

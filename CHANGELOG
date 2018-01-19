@@ -2,6 +2,13 @@
         PAYER PHP SDK CHANGELOG
 ***************************************
 
+v1.1.11
+----------------
+Date: 2018-01-18
+
+    Mathias Åkerberg <mathias.akerberg@payer.se>
+        Changed handling of attributes
+
 v1.1.10
 ----------------
 Date: 2018-01-18
