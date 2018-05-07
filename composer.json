@@ -1,5 +1,5 @@
 {
-    "version": "1.1.11",
+    "version": "1.1.12",
     "name": "payer/sdk",
     "type": "library",
     "description": "The all-in-one Payer API for PHP Developers. This is the only package you need to get started with Payers payment services.",
@@ -17,7 +17,7 @@
         "ext-curl": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.0.*",
+        "phpunit/phpunit": "5.0.*",
         "phpmd/phpmd": "~2.2",
         "squizlabs/php_codesniffer": "~2.3",
         "satooshi/php-coveralls": "~0.6"

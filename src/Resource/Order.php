@@ -27,6 +27,7 @@ use Payer\Sdk\PayerGatewayInterface;
 use Payer\Sdk\Exception\InvalidRequestException;
 use Payer\Sdk\Exception\WebserviceException;
 use Payer\Sdk\Format\Order as OrderFormatter;
+use Payer\Sdk\Validation\Order as OrderValidator;
 use Payer\Sdk\Transport\Http\Response;
 use Payer\Sdk\Transport\Http;
 use Payer\Sdk\Webservice\WebserviceInterface;
@@ -35,18 +36,27 @@ class Order extends PayerResource
 {
 
     /**
-     * Order object formatter
+     * Data Formatter
      *
      * @var DataFormatter
      *
      */
     private $_formatter;
 
+    /**
+     * Data Validator
+     *
+     * @var ResourceValidator
+     *
+     */
+    private $_validator;
+
     public function __construct(PayerGatewayInterface $gateway)
     {
         $this->gateway = $gateway;
 
         $this->_formatter = new OrderFormatter;
+        $this->_validator = new OrderValidator;
     }
 
     /**
@@ -76,6 +86,8 @@ class Order extends PayerResource
         if (empty($items)) {
             throw new InvalidRequestException("Missing argument: 'items'");
         }
+
+        $this->_validator->validateOrder($order);
 
         $options = $order['options'];
 

@@ -1,4 +1,4 @@
-<?php namespace Payer\Test;
+<?php namespace Payer\Test\Integration;
 /**
  * Copyright 2016 Payer Financial Services AB
  *
@@ -55,12 +55,12 @@ class PurchaseTest extends PayerTestCase {
     public function testGetPostdata()
     {
 	    	print "testGetPostdata()\n";
-	    
+
 	    	// TODO: Impl
-	    
+
 	    	$this->fail();
     }
-    
+
     /**
      * Test refund a payment
      *

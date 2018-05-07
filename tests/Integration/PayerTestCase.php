@@ -1,4 +1,4 @@
-<?php namespace Payer\Test;
+<?php namespace Payer\Test\Integration;
 /**
  * Copyright 2016 Payer Financial Services AB
  *
@@ -23,9 +23,9 @@
  */
 
 use Payer\Sdk\Client;
-
 use Payer\Sdk\Webservice\WebserviceInterface;
-use Payer\Test\PayerResourceStub;
+
+use Payer\Test\IntegrationPayerResourceStub;
 
 class PayerTestCase extends \PHPUnit_Framework_TestCase {
 

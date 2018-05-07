@@ -1,4 +1,4 @@
-<?php namespace Payer\Test;
+<?php namespace Payer\Test\Integration;
 /**
  * Copyright 2016 Payer Financial Services AB
  *

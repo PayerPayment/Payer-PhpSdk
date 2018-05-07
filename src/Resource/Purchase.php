@@ -191,7 +191,7 @@ class Purchase extends PayerResource
             'transaction_id' => $transactionId
         );
     }
-    
+
     /**
      * Returns the raw data used in the post request to initiate
      * a payment session through the payment dialogue
@@ -204,12 +204,12 @@ class Purchase extends PayerResource
     public function getPostData(array $input)
     {
 	    	$input = $this->_formatter->filterCreatePurchase($input);
-	    
+
 	    	$payment = $input['payment'];
 	    	$purchase = $input['purchase'];
-	    
+
 	    	$post = $this->gateway->getPostService();
-	    
+
 	    	$this->_setOrderDetails($post, $purchase);
 	    	$this->_setOrderItems($post, $purchase['items']);
 	    	$this->_setCustomerDetails($post, $purchase['customer']);
@@ -222,7 +222,7 @@ class Purchase extends PayerResource
    			'xml_data' => $post->get_xml_data(),
    			'checksum' => $post->get_checksum(),
    			'charset' => $post->get_charset()
-   		);	
+   		);
      }
 
     /**
@@ -255,7 +255,7 @@ class Purchase extends PayerResource
 
         $vat_percentage = $input['vat_percentage'];
         if (empty($vat_percentage)) {
-            throw new InvalidRequestException("Missing argument: 'var_percentage'");
+            throw new InvalidRequestException("Missing argument: 'vat_percentage'");
         }
 
         $soap = $this->gateway->getSoapService();

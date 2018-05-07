@@ -2,12 +2,19 @@
         PAYER PHP SDK CHANGELOG
 ***************************************
 
+v1.1.12
+----------------
+Date: 2018-05-07
+
+    Mathias Åkerberg <mathias.akerberg@payer.se>
+        Added Data Validation layer
+
 v1.1.11
 ----------------
 Date: 2018-01-18
 
     Mathias Åkerberg <mathias.akerberg@payer.se>
-        Changed handling of attributes
+        Changed formatting of attributes in PostService
 
 v1.1.10
 ----------------
