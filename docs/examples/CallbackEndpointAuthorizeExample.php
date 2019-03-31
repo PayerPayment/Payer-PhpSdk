@@ -50,7 +50,8 @@ $data = array(
     'proxy' => array(
         '::1'   // For debugging purposes: Add the requestors ip to pass the firewall validation
     ),
-    // 'skip_ip_validation' => false
+     // 'is_proxy' => false,
+     // 'skip_ip_validation' => false
 );
 
 try {

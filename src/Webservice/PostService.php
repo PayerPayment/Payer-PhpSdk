@@ -993,9 +993,9 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 	 * @return bool true/false
 	 *
 	 */
-	public function is_valid_ip()
+	public function is_valid_ip($is_proxy = false)
 	{
-		$ip = $_SERVER ["REMOTE_ADDR"];
+		$ip = ($is_proxy ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER ["REMOTE_ADDR"]);
 		return in_array ( $ip, $this->myFirewall );
 	}
 
@@ -1022,7 +1022,7 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 	 * @return bool returns true or false indicating a legal(true) callback checksum
 	 *
 	 */
-	public function is_valid_callback()
+	public function is_valid_callback($proxy = false)
 	{
 		return $this->validate_callback_url ( $this->get_request_url () );
 	}

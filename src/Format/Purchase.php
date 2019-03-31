@@ -39,6 +39,10 @@ class Purchase extends DataFormatter
             $callbackRequest['proxy'] = array();
         }
 
+        if (!array_key_exists("is_proxy", $callbackRequest)) {
+            $callbackRequest['is_proxy'] = false;
+        }
+
         if (!array_key_exists("skip_ip_validation", $callbackRequest)) {
             $callbackRequest['skip_ip_validation'] = false;
         }

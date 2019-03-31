@@ -331,7 +331,9 @@ class Purchase extends PayerResource
 
         $validate_ip = !($input['skip_ip_validation']);
         if ($validate_ip) {
-            if (!($post->is_valid_ip())) {
+            $is_proxy = $input['is_proxy'];
+
+            if (!($post->is_valid_ip($is_proxy))) {
                 die("FALSE - INVALID IP " . $_SERVER['REMOTE_ADDR'] . "\n");
             }
         }

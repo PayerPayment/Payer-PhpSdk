@@ -33,8 +33,8 @@ $data = array(
         'language'  => 'sv',
         'method'    => 'card',  // Examples: auto, card, invoice, bank, installment, swish
         'url' => array(
-            'authorize' => 'http://example.com/CallbackEndpointAuthorizeExample.php', // The url to the Authorize Callback Resource
-            'settle'    => 'http://example.com/CallbackEndpointSettlementExample.php', // The url to the Settlement Callback Resource
+            'authorize' => 'http://v3.albacon.se/test/Payer-PhpSdk/docs/examples/CallbackEndpointAuthorizeExample.php', // The url to the Authorize Callback Resource
+            'settle'    => 'http://v3.albacon.se/test/Payer-PhpSdk/docs/examples/CallbackEndpointSettlementExample.php', // The url to the Settlement Callback Resource
             'redirect'  => 'http://example.com',
             'success'   => 'http://example.com'
         ),
