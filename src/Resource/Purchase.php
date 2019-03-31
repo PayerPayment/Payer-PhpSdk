@@ -329,10 +329,15 @@ class Purchase extends PayerResource
             }
         }
 
-        if(!$post->is_valid_ip()) {
-            die("FALSE - INVALID IP " . $_SERVER['REMOTE_ADDR'] . "\n");
+        $validate_ip = !($input['skip_ip_validation']);
+        if ($validate_ip) {
+            if (!($post->is_valid_ip())) {
+                die("FALSE - INVALID IP " . $_SERVER['REMOTE_ADDR'] . "\n");
+            }
         }
-        if(!$post->is_valid_callback()) {
+        
+        $validate_callback = !$post->is_valid_callback();
+        if ($validate_callback) {
             die("FALSE - INVALID CALLBACK REQUEST");
         }
     }
