@@ -30,20 +30,20 @@
  */
 $credentials = array(
 
-      'agent_id' => 'TESTINSTALLATION',
+   // 'agent_id' => '',
 
-     // Required by Purchase, GetAddress, Challenge
+   // Required by Purchase, GetAddress, Challenge
 
-      'post' => array(
-         'key_1'             => 'j3qh0b3B22sIyWulCZKeFJvIMx9mylLId2Qd4JEUAWtYJOacDKg9kCGWZE0oQKWUCDXwcshCfArOerQI2XGcpdYfIXtoyg02JWnLfuekVvZ1NGyFt5HJ8vOGj9VIeUzO',
-         'key_2'             => 'mzuP5yWQWzesjrRlfQToHSf1B2xjNseZRyFLWrsIRw12NIcTpW9XFdN76afIsjyaI4Muk543qTT5sWNHJLueP8aK8gjqqHrYB5jLYcEfWn0eaNMJo7O55PF3VOicmA2N'
-      ),
+   // 'post' => array(
+   //   'key_1'             => '',
+   //   'key_2'             => ''
+   // ),
 
-    // Required by Invoice, Order
+   // Required by Invoice, Order
 
-    // 'soap'  => array(
-       // 'username' => '',
-       // 'password' => ''
-    // )
+   // 'soap'  => array(
+      // 'username' => '',
+      // 'password' => ''
+   // )
 
 );

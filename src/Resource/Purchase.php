@@ -330,6 +330,7 @@ class Purchase extends PayerResource
         }
 
         $validate_ip = !($input['skip_ip_validation']);
+   
         if ($validate_ip) {
             $is_proxy = $input['is_proxy'];
 
