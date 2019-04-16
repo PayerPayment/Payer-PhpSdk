@@ -995,8 +995,21 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 	 */
 	public function is_valid_ip($is_proxy = false)
 	{
-		$ip = ($is_proxy ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER ["REMOTE_ADDR"]);
-		return in_array ( $ip, $this->myFirewall );
+		if ( $is_proxy ) {
+			if ( strpos( $_SERVER['HTTP_X_FORWARDED_FOR'], ',' ) !== false ) {
+				$iplist = explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] );
+				foreach ( $iplist as $ip ) {
+					if ( in_array ( $ip, $this->myFirewall ) ) {
+						return true;
+					}
+				}
+				return false;
+			} else {
+				return in_array ( $_SERVER ["HTTP_X_FORWARDED_FOR"], $this->myFirewall );
+			}
+		}
+		
+		return in_array ( $_SERVER ["REMOTE_ADDR"], $this->myFirewall );
 	}
 
 	/**

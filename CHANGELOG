@@ -2,6 +2,13 @@
         PAYER PHP SDK CHANGELOG
 ***************************************
 
+v1.1.13
+Date: 2019-04-14
+
+   Mathias Åkerberg <mathias.akerberg@payer.se>
+        - Added new option 'is_proxy'
+	- Added new option 'skip_ip_validation'
+
 v1.1.12
 ----------------
 Date: 2018-05-07
