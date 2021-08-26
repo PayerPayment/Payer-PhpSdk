@@ -1128,24 +1128,21 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 		$this->myXmlData .= "<purchase_list>\n";
 
 		// Purchase list (catalog purchases)
-		@reset ( $this->myCatalogPurchases );
-		while ( list ( , $thePurchase ) = @each ( $this->myCatalogPurchases ) ) {
+        foreach ($this->myCatalogPurchases as $thePurchase) {
 			$this->myXmlData .= "<catalog_purchase>" . "<line_number>" . $this->do_encode ( $thePurchase ["LineNo"] ) . "</line_number>" . "<id>" . $this->do_encode ( $thePurchase ["Id"] ) . "</id>" . "<quantity>" . $this->do_encode ( $thePurchase ["Quantity"] ) . "</quantity>" . "</catalog_purchase>\n";
 		}
 
 		// Purchase list (freeform purchases)
-		@reset ( $this->myFreeformPurchases );
-		while ( list ( , $thePurchase ) = @each ( $this->myFreeformPurchases ) ) {
+        foreach ($this->myFreeformPurchases as $thePurchase) {
 			$this->myXmlData .= "<freeform_purchase>" . " <line_number>" . $this->do_encode ( $thePurchase ["LineNo"] ) . "</line_number>\n" . " <description>" . $this->do_encode ( $thePurchase ["Description"] ) . "</description>\n" . (! empty ( $thePurchase ["ItemNumber"] ) ? " <item_number>" . $this->do_encode ( $thePurchase ["ItemNumber"] ) . "</item_number>\n" : "") . " <price_including_vat>" . $this->do_encode ( $thePurchase ["Price"] ) . "</price_including_vat>\n" . " <vat_percentage>" . $this->do_encode ( $thePurchase ["Vat"] ) . "</vat_percentage>\n" . " <quantity>" . $this->do_encode ( $thePurchase ["Quantity"] ) . "</quantity>\n" . (! empty ( $thePurchase ["Unit"] ) ? " <unit>" . $this->do_encode ( $thePurchase ["Unit"] ) . "</unit>\n" : "") . (! empty ( $thePurchase ["Account"] ) ? " <account>" . $this->do_encode ( $thePurchase ["Account"] ) . "</account>\n" : "") . (! empty ( $thePurchase ["AgentId"] ) ? " <agent_id>" . $this->do_encode ( $thePurchase ["AgentId"] ) . "</agent_id>\n" : "") . "</freeform_purchase>\n";
 		}
 
-		foreach ( $this->mySubscriptionPurchases as $thePurchase ) {
+		foreach ($this->mySubscriptionPurchases as $thePurchase ) {
 			$this->myXmlData .= " <subscription_purchase>\n" . "  <line_number>" . $this->do_encode ( $thePurchase ["LineNo"] ) . "</line_number>\n" . "  <description>" . $this->do_encode ( $thePurchase ["Description"] ) . "</description>\n" . "  <price_including_vat>" . $this->do_encode ( $thePurchase ["Price"] ) . "</price_including_vat>\n" . "  <vat_percentage>" . $this->do_encode ( $thePurchase ["Vat"] ) . "</vat_percentage>\n" . "  <quantity>" . $this->do_encode ( $thePurchase ["Quantity"] ) . "</quantity>\n" . (! empty ( $thePurchase ["ItemNumber"] ) ? "  <item_number>" . $this->do_encode ( $thePurchase ["ItemNumber"] ) . "</item_number>\n" : "") . (! empty ( $thePurchase ["Unit"] ) ? "  <unit>" . $this->do_encode ( $thePurchase ["Unit"] ) . "</unit>\n" : "") . (! empty ( $thePurchase ["Account"] ) ? "  <account>" . $this->do_encode ( $thePurchase ["Account"] ) . "</account>\n" : "") . "  <recurring_price_including_vat>" . $this->do_encode ( $thePurchase ["RecurringPrice"] ) . "</recurring_price_including_vat>\n" . "  <start_date>" . $this->do_encode ( $thePurchase ["StartDate"] ) . "</start_date>\n" . "  <stop_date>" . $this->do_encode ( $thePurchase ["StopDate"] ) . "</stop_date>\n" . "  <count>" . $this->do_encode ( $thePurchase ["Count"] ) . "</count>\n" . "  <periodicity>" . $this->do_encode ( $thePurchase ["Periodicity"] ) . "</periodicity>\n" . "  <cancel_days>" . $this->do_encode ( $thePurchase ["CancelDays"] ) . "</cancel_days>\n" . " </subscription_purchase>\n";
 		}
 
 		// Purchase list (info lines)
-		@reset ( $this->myInfoLines );
-		while ( list ( , $theValues ) = @each ( $this->myInfoLines ) ) {
+        foreach ($this->myInfoLines as $theValues) {
 			$this->myXmlData .= "<info_line>" . "<line_number>" . $this->do_encode ( $theValues ["LineNo"] ) . "</line_number>" . "<text>" . $this->do_encode ( $theValues ["Text"] ) . "</text>" . "</info_line>\n";
 		}
 
@@ -1170,8 +1167,7 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 
 		// Payment methods
 		$this->myXmlData .= "<accepted_payment_methods>\n";
-		@reset ( $this->myPaymentMethods );
-		while ( list ( , $thePaymentMethod ) = @each ( $this->myPaymentMethods ) ) {
+        foreach ($this->myPaymentMethods as $thePaymentMethod) {
 			$this->myXmlData .= "<payment_method>" . $thePaymentMethod . "</payment_method>\n";
 		}
 		$this->myXmlData .= "</accepted_payment_methods>\n";
