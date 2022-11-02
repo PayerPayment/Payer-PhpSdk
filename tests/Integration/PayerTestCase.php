@@ -27,9 +27,6 @@ use Payer\Sdk\Webservice\WebserviceInterface;
 
 class PayerTestCase extends \PHPUnit\Framework\TestCase
 {
-
-class PayerTestCase extends \PHPUnit_Framework_TestCase {
-
     /**
      * Payer Webservice Credentials
      *
