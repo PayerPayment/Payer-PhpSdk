@@ -1,5 +1,5 @@
 {
-	"version" : "1.1.21",
+	"version" : "1.1.22",
 	"name" : "payer/sdk",
 	"type" : "library",
 	"description" : "The all-in-one Payer API for PHP Developers. Tested up to PHP 8.1 This is the only package you need to get started with Payers payment services.",
@@ -25,7 +25,7 @@
 		"phpunit/phpunit" : "^8.5",
 		"phpmd/phpmd" : "~2.2",
 		"squizlabs/php_codesniffer" : "~2.3",
-		"php-coveralls/php-coveralls" : "*"
+		"php-coveralls/php-coveralls" : "^2"
 	},
 	"autoload" : {
 		"psr-4" : {
