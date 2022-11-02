@@ -102,7 +102,7 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 		$this->myPayerServerUrl = $this->getDomain() . $this->getRelativePath();
 
 		// Set defaults
-		$this->myPostApiVersion = "payer_php_0_2_v30";
+		$this->myPostApiVersion = "payer_php_sdk_v40";
 
 		$this->myCurrency 		= "SEK";
 		$this->myLanguage 		= "sv";
@@ -1127,15 +1127,11 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 		// Start the Purchase list
 		$this->myXmlData .= "<purchase_list>\n";
 
-		// Purchase list (catalog purchases)
-		@reset ( $this->myCatalogPurchases );
-		while ( list ( , $thePurchase ) = @each ( $this->myCatalogPurchases ) ) {
+        foreach ($this->myCatalogPurchases as $thePurchase) {
 			$this->myXmlData .= "<catalog_purchase>" . "<line_number>" . $this->do_encode ( $thePurchase ["LineNo"] ) . "</line_number>" . "<id>" . $this->do_encode ( $thePurchase ["Id"] ) . "</id>" . "<quantity>" . $this->do_encode ( $thePurchase ["Quantity"] ) . "</quantity>" . "</catalog_purchase>\n";
 		}
 
-		// Purchase list (freeform purchases)
-		@reset ( $this->myFreeformPurchases );
-		while ( list ( , $thePurchase ) = @each ( $this->myFreeformPurchases ) ) {
+        foreach ($this->myFreeformPurchases as $thePurchase) {
 			$this->myXmlData .= "<freeform_purchase>" . " <line_number>" . $this->do_encode ( $thePurchase ["LineNo"] ) . "</line_number>\n" . " <description>" . $this->do_encode ( $thePurchase ["Description"] ) . "</description>\n" . (! empty ( $thePurchase ["ItemNumber"] ) ? " <item_number>" . $this->do_encode ( $thePurchase ["ItemNumber"] ) . "</item_number>\n" : "") . " <price_including_vat>" . $this->do_encode ( $thePurchase ["Price"] ) . "</price_including_vat>\n" . " <vat_percentage>" . $this->do_encode ( $thePurchase ["Vat"] ) . "</vat_percentage>\n" . " <quantity>" . $this->do_encode ( $thePurchase ["Quantity"] ) . "</quantity>\n" . (! empty ( $thePurchase ["Unit"] ) ? " <unit>" . $this->do_encode ( $thePurchase ["Unit"] ) . "</unit>\n" : "") . (! empty ( $thePurchase ["Account"] ) ? " <account>" . $this->do_encode ( $thePurchase ["Account"] ) . "</account>\n" : "") . (! empty ( $thePurchase ["AgentId"] ) ? " <agent_id>" . $this->do_encode ( $thePurchase ["AgentId"] ) . "</agent_id>\n" : "") . "</freeform_purchase>\n";
 		}
 
@@ -1144,11 +1140,11 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 		}
 
 		// Purchase list (info lines)
-		@reset ( $this->myInfoLines );
-		while ( list ( , $theValues ) = @each ( $this->myInfoLines ) ) {
+        foreach ($this->myInfoLines as $theValues) {
+            # while ( list ( , $theValues ) = @each ( $this->myInfoLines ) ) {
 			$this->myXmlData .= "<info_line>" . "<line_number>" . $this->do_encode ( $theValues ["LineNo"] ) . "</line_number>" . "<text>" . $this->do_encode ( $theValues ["Text"] ) . "</text>" . "</info_line>\n";
 		}
-
+        // End Purchase list
 		$this->myXmlData .= "</purchase_list>\n" . "</purchase>\n";
 
 		// Processing control
@@ -1170,8 +1166,7 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 
 		// Payment methods
 		$this->myXmlData .= "<accepted_payment_methods>\n";
-		@reset ( $this->myPaymentMethods );
-		while ( list ( , $thePaymentMethod ) = @each ( $this->myPaymentMethods ) ) {
+        foreach ($this->myPaymentMethods as $thePaymentMethod) {
 			$this->myXmlData .= "<payment_method>" . $thePaymentMethod . "</payment_method>\n";
 		}
 		$this->myXmlData .= "</accepted_payment_methods>\n";

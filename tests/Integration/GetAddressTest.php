@@ -32,7 +32,7 @@ class GetAddressTest extends PayerTestCase {
      * Initializes the Payer Test Environment
      *
      */
-    public function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
     }

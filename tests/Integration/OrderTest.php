@@ -26,7 +26,11 @@ use Payer\Sdk\Transport\Http\Response;
 
 class OrderTest extends PayerTestCase {
 
-    public function setUp()
+    /**
+     * Initializes the Payer Test Environment
+     *
+     */
+    protected function setUp(): void
     {
         parent::setUp();
     }

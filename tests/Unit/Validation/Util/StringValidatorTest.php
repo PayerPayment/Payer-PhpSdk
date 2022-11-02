@@ -26,7 +26,7 @@ use Payer\Sdk\Validation\Util\StringValidator;
 
 use Payer\Test\Unit\Util\Random;
 
-class StringValidatorTest extends \PHPUnit_Framework_TestCase {
+class StringValidatorTest extends \PHPUnit\Framework\TestCase {
 
     public function testValidateMaxLength_ShouldReturnTrue()
     {

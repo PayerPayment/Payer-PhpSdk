@@ -25,7 +25,8 @@
 use Payer\Sdk\Client;
 use Payer\Sdk\Webservice\WebserviceInterface;
 
-use Payer\Test\IntegrationPayerResourceStub;
+class PayerTestCase extends \PHPUnit\Framework\TestCase
+{
 
 class PayerTestCase extends \PHPUnit_Framework_TestCase {
 
@@ -55,7 +56,7 @@ class PayerTestCase extends \PHPUnit_Framework_TestCase {
      *  Initializes the Payer test environment
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->credentials = array(
 

@@ -28,7 +28,7 @@ class PurchaseTest extends PayerTestCase {
      * Initializes the Payer test environment
      *
      */
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
     }

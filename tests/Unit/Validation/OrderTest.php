@@ -27,11 +27,11 @@ use Payer\Sdk\Validation\Order as OrderValidator;
 
 use Payer\Test\Unit\Util\Random;
 
-class OrderTest extends \PHPUnit_Framework_TestCase {
+class OrderTest extends \PHPUnit\Framework\TestCase {
 
   private $_validator;
 
-  public function setUp()
+  protected function setUp(): void
   {
       $this->_validator = new OrderValidator();
   }

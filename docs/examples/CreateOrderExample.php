@@ -35,7 +35,7 @@ $data = array(
     'description'   => 'This is an order description',
     'currency'      => 'SEK',
     'test_mode'     => true,
-    'client_ip'     => $_SERVER['REMOTE_ADDR'],
+    'client_ip'     => @$_SERVER['REMOTE_ADDR'],
     'charset'       => 'UTF-8',
     'customer'  => array(
 
