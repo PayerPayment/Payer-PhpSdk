@@ -114,6 +114,7 @@ class PostService extends WebserviceInterface implements PayerPostInterface
 
 		// Valid callback addresses
 		$this->myFirewall = array (
+		    "34.88.87.134",
 			"192.168.100.1",
 			"192.168.100.20",
 			"79.136.103.5",

@@ -6,7 +6,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,17 +16,17 @@
  *
  * PHP version 5.3
  *
- * @package   Payer_Sdk
- * @author    Payer <teknik@payer.se>
+ * @package Payer_Sdk
+ * @author Payer <teknik@payer.se>
  * @copyright 2016 Payer Financial Services AB
- * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache license v2.0
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache license v2.0
  */
-
 use Payer\Sdk\Client;
 use Payer\Sdk\Webservice\WebserviceInterface;
 
 class PayerTestCase extends \PHPUnit\Framework\TestCase
 {
+
     /**
      * Payer Webservice Credentials
      *
@@ -50,30 +50,26 @@ class PayerTestCase extends \PHPUnit\Framework\TestCase
     protected $stub;
 
     /**
-     *  Initializes the Payer test environment
-     *
+     * Initializes the Payer test environment
      */
     protected function setUp(): void
     {
         $this->credentials = array(
 
-            // 'agent_id' => '',
+            'agent_id' => 'PR_EXAMPLES',
 
-            // 'post' => array(
-            //     'key_1'             => '',
-            //     'key_2'             => ''
-            // ),
+            'post' => array(
+                'key_1' => 'hL6eCgMLxgnXoF76egnlLZiGwrl8CPVJqRNSXqulwH0Lc6GhcTsOIBk6Tv3mbOVrvzajPuuc3tN6pjcs4v7BXgxHCpTD5EVp5VyKgTM9dp4sz7KssGUgNhNgxwJPLkDX',
+                'key_2' => 'hj7MaLU6l8cysuMCxP8T11U9aiwC61PdaLPanA7zx0XQtAiRffB77l57trypidsiP9j3yfsWfgCyGLfLRGINSDKcU9r3cKbRIlK8r3Tw9mUFY1gGwPjfiUh4SzWxBXEm'
+            ),
 
-            // 'soap'  => array(
-            //     'username' => '',
-            //     'password' => ''
-            // )
-
+            'soap' => array(
+                'username' => 'A48831305',
+                'password' => '5526h4q9hSZt'
+            )
         );
 
         $this->gateway = Client::create($this->credentials);
-
         $this->stub = new PayerResourceStub($this->gateway);
     }
-
 }
