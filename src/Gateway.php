@@ -119,7 +119,10 @@ class Gateway extends PayerGatewayInterface {
 				new PostService($this->getDomain(), $credentials['post'])
 			);
 		}
-
+/*
+ *      REST Interface currently not supported
+ *
+		 
 		if (!empty($credentials['rest'])) {
 			$credentials['rest']['agent_id'] = $credentials['agent_id'];
 			$this->_setRestService(
@@ -130,6 +133,8 @@ class Gateway extends PayerGatewayInterface {
 				)
 			);
 		}
+*/
+
 /*
  *      SOAP Interface currently not supported
  *      
