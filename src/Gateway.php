@@ -130,14 +130,16 @@ class Gateway extends PayerGatewayInterface {
 				)
 			);
 		}
-
+/*
+ *      SOAP Interface currently not supported
+ *      
 		if (!empty($credentials['soap'])) {
 			$credentials['soap']['agent_id'] = $credentials['agent_id'];
 			$this->_setSoapService(
 				new SoapService($this->getDomain(), $credentials['soap'])
 			);
-
 		}
+*/
 	}
 
 }
